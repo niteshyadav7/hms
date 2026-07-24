@@ -1,0 +1,28 @@
+HOTEL MANAGEMENT SYSTEM MVP SPECIFICATION (UPDATED)
+
+Recommended Tech Stack - Frontend: Next.js (App Router) + React +
+TypeScript - Styling: Tailwind CSS + shadcn/ui - Forms: React Hook
+Form + Zod - Data Fetching: TanStack Query - Backend: Next.js API
+Routes - Database: Supabase PostgreSQL - ORM: Prisma - Authentication:
+Supabase Auth - Storage: Supabase Storage (Cloudinary optional for many
+images) - Payments: Razorpay - Deployment: Vercel - Monitoring (later):
+Sentry
+
+Why this stack? - PostgreSQL is ideal for relational booking data. -
+Supabase combines Database, Auth and Storage in one platform. - Next.js
+keeps frontend and backend together for faster development. - Prisma
+provides a type-safe developer experience. - Well supported by AI coding
+agents.
+
+Scaling Plan Phase 1: - 1 hotel - 20-100 rooms - Free Supabase plan -
+Basic booking flow
+
+Phase 2: - More staff - Reports - Better analytics - Upgrade Supabase
+only if limits are reached
+
+Phase 3: - Multiple hotels - Advanced reports - Loyalty - Restaurant -
+Housekeeping
+
+Core MVP Modules 1. Public Website 2. Authentication 3. Room Search &
+Availability 4. Booking Flow 5. Guest Dashboard 6. Admin Dashboard 7.
+Room Management 8. Booking Management 9. Payments 10. Basic Reports

@@ -1,0 +1,109 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  GUEST
+  ADMIN
+}
+
+enum RoomStatus {
+  AVAILABLE
+  OCCUPIED
+  MAINTENANCE
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CHECKED_IN
+  CHECKED_OUT
+  CANCELLED
+}
+
+enum PaymentMethod {
+  PAY_AT_HOTEL
+  ONLINE
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  REFUNDED
+}
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  passwordHash String
+  name         String
+  phone        String?
+  role         Role      @default(GUEST)
+  isApproved   Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  bookings     Booking[]
+}
+
+model RoomType {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  basePrice   Float
+  capacity    Int
+  amenities   String   @default("[]")
+  images      String   @default("[]")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  rooms       Room[]
+}
+
+model Room {
+  id         String     @id @default(uuid())
+  roomNumber String     @unique
+  roomTypeId String
+  roomType   RoomType   @relation(fields: [roomTypeId], references: [id], onDelete: Cascade)
+  floor      Int?
+  status     RoomStatus @default(AVAILABLE)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  bookings   Booking[]
+}
+
+model Booking {
+  id              String        @id @default(uuid())
+  bookingNumber   String        @unique
+  userId          String?
+  user            User?         @relation(fields: [userId], references: [id], onDelete: SetNull)
+  roomId          String
+  room            Room          @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  checkIn         DateTime
+  checkOut        DateTime
+  guestsCount     Int
+  totalPrice      Float
+  status          BookingStatus @default(CONFIRMED)
+  guestName       String
+  guestEmail      String
+  guestPhone      String
+  specialRequests String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  payments        Payment[]
+}
+
+model Payment {
+  id            String        @id @default(uuid())
+  bookingId     String
+  booking       Booking       @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  amount        Float
+  method        PaymentMethod @default(PAY_AT_HOTEL)
+  status        PaymentStatus @default(PENDING)
+  transactionId String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}

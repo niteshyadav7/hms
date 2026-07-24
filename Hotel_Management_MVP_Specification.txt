@@ -1,0 +1,110 @@
+Hotel Management System MVP Specification
+
+Goal
+
+Build a production-ready MVP for a single hotel that allows guests to
+browse rooms, book online, and enables staff to manage rooms and
+bookings.
+
+User Roles
+
+1.  Guest
+2.  Admin/Receptionist
+
+Module 1: Public Website
+
+Pages: - Home - About - Rooms - Room Details - Gallery - Amenities -
+Contact
+
+Home: - Hero banner - Search widget (check-in, check-out, guests) -
+Featured rooms - Amenities - Testimonials - Map - Footer
+
+Rooms: - Cards with image, title, price/night, capacity, Book Now. -
+Filters: room type, price, guests.
+
+Room Details: - Images - Description - Amenities - Occupancy -
+Cancellation policy - Availability - Book button
+
+Module 2: Authentication
+
+-   Register
+-   Login
+-   Forgot password
+-   Logout
+
+Module 3: Booking Flow
+
+1.  Search dates
+2.  Show only available rooms
+3.  Select room
+4.  Enter guest details
+5.  Review booking
+6.  Payment (online or pay at hotel)
+7.  Confirmation page
+8.  Confirmation email (optional)
+
+Booking statuses: Pending, Confirmed, Checked-In, Checked-Out,
+Cancelled.
+
+Module 4: Guest Dashboard
+
+-   Upcoming bookings
+-   Past bookings
+-   Booking details
+-   Cancel booking (policy based)
+-   Profile
+
+Module 5: Admin Dashboard
+
+Dashboard KPIs: - Total rooms - Available - Occupied - Today’s
+bookings - Revenue
+
+Room Management: - Add/Edit/Delete room - Room number - Type - Price -
+Capacity - Images - Amenities - Status: Available/Occupied/Maintenance
+
+Booking Management: - View bookings - Confirm/Cancel - Assign room -
+Check-in - Check-out
+
+Guest Management: - Guest list - Booking history
+
+Module 6: Payments
+
+-   Razorpay/Stripe (optional for MVP if cash supported)
+-   Payment status: Pending/Paid/Refunded
+
+Module 7: Reports
+
+-   Daily bookings
+-   Revenue
+-   Occupancy %
+
+Database Entities
+
+Users Rooms RoomTypes Bookings Payments Amenities RoomImages
+
+Relationships: User -> many Bookings Room -> many Bookings RoomType ->
+many Rooms Room -> many Images
+
+API (High Level)
+
+Auth: POST /register POST /login
+
+Rooms: GET /rooms GET /rooms/:id POST /rooms PUT /rooms/:id DELETE
+/rooms/:id
+
+Bookings: GET /bookings POST /bookings PUT /bookings/:id POST
+/bookings/:id/checkin POST /bookings/:id/checkout
+
+Non-functional
+
+-   Responsive
+-   Role-based access
+-   Form validation
+-   Image optimization
+-   Basic security
+-   Error handling
+-   Loading states
+
+Future (Not MVP)
+
+Housekeeping Restaurant Inventory Coupons Loyalty Multi-hotel AI chatbot

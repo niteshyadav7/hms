@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lumina Grand | Room Catalog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .aura-shadow {
+            box-shadow: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.06);
+        }
+        .inner-border {
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#494551",
+                        "primary-fixed": "#e9ddff",
+                        "on-primary-fixed": "#22005d",
+                        "on-primary-container": "#e0d2ff",
+                        "surface-container-low": "#f8f2fa",
+                        "tertiary-fixed-dim": "#e7c365",
+                        "surface-dim": "#ded8e0",
+                        "surface": "#fdf7ff",
+                        "tertiary-container": "#c9a74d",
+                        "on-tertiary-container": "#503d00",
+                        "secondary-fixed": "#e9ddff",
+                        "on-background": "#1d1b20",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "outline": "#7a7582",
+                        "on-secondary-fixed": "#1f1635",
+                        "surface-container-highest": "#e6e0e9",
+                        "secondary": "#63597c",
+                        "on-tertiary-fixed": "#241a00",
+                        "secondary-fixed-dim": "#cdc0e9",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#1d1b20",
+                        "secondary-container": "#e1d4fd",
+                        "inverse-primary": "#cfbcff",
+                        "outline-variant": "#cbc4d2",
+                        "surface-container-high": "#ece6ee",
+                        "surface-tint": "#6750a4",
+                        "inverse-surface": "#322f35",
+                        "inverse-on-surface": "#f5eff7",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#cfbcff",
+                        "on-secondary-container": "#645a7d",
+                        "surface-variant": "#e6e0e9",
+                        "tertiary-fixed": "#ffdf93",
+                        "surface-container": "#f2ecf4",
+                        "on-tertiary-fixed-variant": "#594400",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fdf7ff",
+                        "on-secondary-fixed-variant": "#4b4263",
+                        "background": "#fdf7ff",
+                        "primary-container": "#6750a4",
+                        "primary": "#4f378a",
+                        "on-primary-fixed-variant": "#4f378a",
+                        "tertiary": "#765b00",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "margin-desktop": "48px",
+                        "unit": "4px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-sans selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Bar -->
+<header class="docked full-width top-0 sticky z-50 bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-xl shadow-[0px_0.6rem_2.4rem_rgba(0,0,0,0.06)]">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-8">
+<span class="font-display text-display tracking-tighter text-primary dark:text-primary-fixed">Lumina Grand</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed font-bold border-b-2 border-primary" href="#">Rooms</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors" href="#">Amenities</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors" href="#">Dining</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors" href="#">Guest Portal</a>
+</nav>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined text-on-surface-variant p-2 rounded-full hover:bg-primary/5 transition-all" data-icon="dark_mode">dark_mode</button>
+<button class="material-symbols-outlined text-on-surface-variant p-2 rounded-full hover:bg-primary/5 transition-all" data-icon="account_circle">account_circle</button>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-[5px] font-label-md text-label-md scale-95 transition-transform duration-200 active:opacity-80">Book Now</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-desktop py-stack-lg">
+<!-- Animated Background Header -->
+<section class="relative rounded-xl overflow-hidden mb-stack-lg h-[400px] flex items-center px-12">
+
+<div class="relative z-10 max-w-2xl">
+<h1 class="font-display text-display text-on-primary-fixed mb-4">Find Your Sanctuary</h1>
+<p class="font-body-lg text-body-lg text-on-primary-fixed/80">Experience the pinnacle of luxury with our curated selection of rooms and suites designed for the modern elite traveler.</p>
+</div>
+</section>
+<!-- Sticky Filter Bar -->
+<section class="sticky top-[84px] z-40 mb-stack-lg">
+<div class="glass-panel aura-shadow rounded-lg border border-outline-variant/30 p-stack-md flex flex-col lg:flex-row items-center gap-6">
+<!-- Date Picker -->
+<div class="flex flex-1 w-full gap-4">
+<div class="flex-1 group">
+<label class="block font-label-md text-label-md text-outline mb-1.5 ml-1">Check-in</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="calendar_today">calendar_today</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-[5px] pl-10 pr-4 py-2.5 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" type="text" value="Oct 24, 2024"/>
+</div>
+</div>
+<div class="flex-1 group">
+<label class="block font-label-md text-label-md text-outline mb-1.5 ml-1">Check-out</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="calendar_today">calendar_today</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-[5px] pl-10 pr-4 py-2.5 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" type="text" value="Oct 30, 2024"/>
+</div>
+</div>
+</div>
+<!-- Vertical Divider -->
+<div class="hidden lg:block w-px h-12 bg-outline-variant/50"></div>
+<!-- Room Type Filters -->
+<div class="w-full lg:w-auto overflow-x-auto hide-scrollbar flex items-center gap-2">
+<button class="whitespace-nowrap px-5 py-2.5 rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-sm">All Types</button>
+<button class="whitespace-nowrap px-5 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:bg-primary-container hover:text-on-primary-container transition-all">Suites</button>
+<button class="whitespace-nowrap px-5 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:bg-primary-container hover:text-on-primary-container transition-all">Deluxe</button>
+<button class="whitespace-nowrap px-5 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:bg-primary-container hover:text-on-primary-container transition-all">Villas</button>
+<button class="whitespace-nowrap px-5 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:bg-primary-container hover:text-on-primary-container transition-all">Penthouses</button>
+</div>
+<!-- Price Range -->
+<div class="w-full lg:w-64">
+<label class="flex justify-between font-label-md text-label-md text-outline mb-1.5 px-1">
+<span>Price Range</span>
+<span class="text-primary font-bold">$400 - $2,500</span>
+</label>
+<input class="w-full h-1.5 bg-surface-container-highest rounded-full appearance-none cursor-pointer accent-primary" max="5000" min="400" step="100" type="range"/>
+</div>
+<button class="w-full lg:w-auto bg-primary text-on-primary p-3 rounded-[5px] flex items-center justify-center hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</div>
+</section>
+<!-- Room Catalog Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Room Card 1 -->
+<div class="group aura-shadow rounded-[9px] overflow-hidden bg-surface-container-lowest inner-border transition-all duration-300 hover:-translate-y-1">
+<div class="relative h-72 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A luxurious hotel suite with floor-to-ceiling windows overlooking a crystal blue ocean. The interior features minimalist wooden furniture, soft cream-colored textiles, and golden hour lighting filtering through sheer white curtains. The aesthetic is modern high-end luxury, emphasizing space and serenity in a bright light-mode environment with subtle violet and white accents." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDhr6BJeRC7ITsv_IM3sVE_yr0qpoDtSUdS5sROsKNE8j5a_vBhpZXnZwb5r13V0tEoZaKoWds5OtMPjoCpIlwrwvVxG6MjhwxjqzxWYqERXW4qwSFMucJTP8AhOSvKwDqGX6_VRyV8mLUfH-Hw2Dk5mTQS3dJ7KIA2AdrGbg6D6IgJmvopOGWaTapn48X8MoMNhPTjB0QwDO1EvjMo-hCE84P8SAaB9z6uSur_Dit3InqxivuquzUc2tHnyeomUy0cEYXNYyKzTRYn')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded-full bg-[#E8F5E9] text-[#2E7D32] font-label-md text-[12px] flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#2E7D32] animate-pulse"></span>
+                            Available Now
+                        </span>
+</div>
+<button class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4 right-4 text-white">
+<h3 class="font-headline-md text-headline-md">Oceanic Premier Suite</h3>
+<p class="font-label-md text-[12px] opacity-80 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="square_foot">square_foot</span> 850 sq ft • <span class="material-symbols-outlined text-[14px]" data-icon="king_bed">king_bed</span> King Size
+                        </p>
+</div>
+</div>
+<div class="p-stack-md flex justify-between items-end">
+<div>
+<div class="flex items-center gap-1 text-tertiary mb-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="text-on-surface-variant font-label-md ml-1">4.9 (124 reviews)</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-display text-headline-lg text-primary">$850</span>
+<span class="font-label-md text-outline">/ night</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container px-5 py-2.5 rounded-[5px] font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-all">Details</button>
+</div>
+</div>
+<!-- Room Card 2 -->
+<div class="group aura-shadow rounded-[9px] overflow-hidden bg-surface-container-lowest inner-border transition-all duration-300 hover:-translate-y-1">
+<div class="relative h-72 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A contemporary master bedroom in a luxury penthouse with dark charcoal walls and elegant violet ambient lighting. The bed is draped in silk linens, and a private balcony offers a panoramic city skyline view at dusk. The lighting is sophisticated and moody, perfectly aligned with a premium digital luxury travel aesthetic, featuring deep shadows and crisp highlights." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-VYPIOsJiWHmR6VA0-PjVWcnmI47RdPxr1U1p9KjovmZDiLdGqddu4BJUONwt1Opz_r9RnZRYhe-egaU8Wq6T8zCMpgrk37Asg_1_mwBJUOjmV_zVp2VV-i_BzRnYHQTInNNu6uUCVjHMwrr6K0pBVxCzneBhFznKGXsUoN5H7HlWmdDW-PRTGPUSJFDdp5Buvreu9cRoBxZ0EZ5OwL9ajsLtovVWCYxWlm7OZvL_L2QDOdF8RkR60q18BVxR7dX7dERC0i8QLIhi')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded-full bg-[#E8F5E9] text-[#2E7D32] font-label-md text-[12px] flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#2E7D32] animate-pulse"></span>
+                            Available Now
+                        </span>
+</div>
+<button class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4 right-4 text-white">
+<h3 class="font-headline-md text-headline-md">Skyline Penthouse</h3>
+<p class="font-label-md text-[12px] opacity-80 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="square_foot">square_foot</span> 1,200 sq ft • <span class="material-symbols-outlined text-[14px]" data-icon="apartment">apartment</span> Private Balcony
+                        </p>
+</div>
+</div>
+<div class="p-stack-md flex justify-between items-end">
+<div>
+<div class="flex items-center gap-1 text-tertiary mb-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star_half" data-weight="fill">star_half</span>
+<span class="text-on-surface-variant font-label-md ml-1">4.7 (89 reviews)</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-display text-headline-lg text-primary">$1,450</span>
+<span class="font-label-md text-outline">/ night</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container px-5 py-2.5 rounded-[5px] font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-all">Details</button>
+</div>
+</div>
+<!-- Room Card 3 -->
+<div class="group aura-shadow rounded-[9px] overflow-hidden bg-surface-container-lowest inner-border transition-all duration-300 hover:-translate-y-1">
+<div class="relative h-72 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A minimalist zen-style villa interior featuring natural stone floors, a private indoor plunge pool, and bamboo accents. Soft natural light fills the space, creating a peaceful and exclusive atmosphere. The design follows a light-mode palette with subtle earth tones and vibrant primary indigo highlights, consistent with a high-end travel booking interface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABXH93pDk6s7OkPfELx0_IDnhXmfvtqdg3cD8gRE7_p9kQsoh9iJOTBHWHVqOriL8I278nWAA8A5WlAaKZ8iGoTzrqIDFZdYT_xlQWOUPRUnfAla4hqI8qASHJJxhHhG4cK5IOspSB4x1OfA34oIWUGJZTPRL0Oa6psCiThSApkbBDZlzkl7o9M1qXs0pav-r5owGZ3ASgiUPmffolk6cN-O8q8W-hh3JTUgob0Vxx0oMwnCyRINDkVb_hrq2SAfPH8R2XNc6Phxh5')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded-full bg-[#FFF3E0] text-[#E65100] font-label-md text-[12px] flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#E65100]"></span>
+                            Last Room Left
+                        </span>
+</div>
+<button class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4 right-4 text-white">
+<h3 class="font-headline-md text-headline-md">Garden Zen Villa</h3>
+<p class="font-label-md text-[12px] opacity-80 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="pool">pool</span> Private Pool • <span class="material-symbols-outlined text-[14px]" data-icon="nature">nature</span> Tropical Garden
+                        </p>
+</div>
+</div>
+<div class="p-stack-md flex justify-between items-end">
+<div>
+<div class="flex items-center gap-1 text-tertiary mb-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="text-on-surface-variant font-label-md ml-1">5.0 (56 reviews)</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-display text-headline-lg text-primary">$2,100</span>
+<span class="font-label-md text-outline">/ night</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container px-5 py-2.5 rounded-[5px] font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-all">Details</button>
+</div>
+</div>
+<!-- Room Card 4 -->
+<div class="group aura-shadow rounded-[9px] overflow-hidden bg-surface-container-lowest inner-border transition-all duration-300 hover:-translate-y-1">
+<div class="relative h-72 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" data-alt="A luxurious executive bedroom with a dedicated workspace, featuring a large mahogany desk and an ergonomic leather chair. The room is decorated in rich textures of velvet and silk, with warm recessed lighting and a neutral palette of taupe and violet. The overall feel is one of sophisticated productivity and high-end comfort within a luxury hotel setting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDvzTRRj4vQuti4Z104xBOwf0ASwK6pQkhCydlJOBfQb1rA1fkmSfc82hG4Pk_XtEkXaKug-R5qFUP6Mj3sw5WEiRiMP28b7yT61GUGzLugssJ5zn6cWI11TlQdVQ0ObQEx1XJ9xHlhi2zcuD4YAmUTp73sNVzWNCFtUynFpzES0JCwegld2BQGq8QQwdg4KNYrmmFy2fhLCkwKezIpPXfhXvignh_XjbDPkdXyS0pxT_pzMdX4Xmp18lQ2PiulB8I6YO-CB4dservf')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 rounded-full bg-[#E8F5E9] text-[#2E7D32] font-label-md text-[12px] flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#2E7D32] animate-pulse"></span>
+                            Available Now
+                        </span>
+</div>
+<div class="absolute bottom-4 left-4 right-4 text-white">
+<h3 class="font-headline-md text-headline-md">Executive Business Suite</h3>
+<p class="font-label-md text-[12px] opacity-80 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="laptop_mac">laptop_mac</span> Workspace • <span class="material-symbols-outlined text-[14px]" data-icon="wifi">wifi</span> Hi-Speed WiFi
+                        </p>
+</div>
+</div>
+<div class="p-stack-md flex justify-between items-end">
+<div>
+<div class="flex items-center gap-1 text-tertiary mb-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="star">star</span>
+<span class="text-on-surface-variant font-label-md ml-1">4.2 (210 reviews)</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-display text-headline-lg text-primary">$600</span>
+<span class="font-label-md text-outline">/ night</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container px-5 py-2.5 rounded-[5px] font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-all">Details</button>
+</div>
+</div>
+<!-- Empty State / Load More -->
+<div class="col-span-full py-stack-lg flex flex-col items-center justify-center text-center">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-outline text-3xl" data-icon="more_horiz">more_horiz</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Showing 4 of 28 rooms</h4>
+<button class="text-primary font-label-md text-label-md hover:underline decoration-2 underline-offset-4">Load more properties</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-lg px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-stack-md bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-display text-headline-md text-primary dark:text-primary-fixed">Lumina Grand</span>
+<p class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant text-center md:text-left">© 2024 Lumina Grand Luxury Resorts. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-opacity" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-opacity" href="#">Terms of Service</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-opacity" href="#">Sustainability</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-opacity" href="#">Careers</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-opacity" href="#">Press Kit</a>
+</div>
+</footer>
+<!-- Custom Script for Micro-interactions -->
+<script>
+        // Smooth shadow interaction for cards
+        const cards = document.querySelectorAll('.group.aura-shadow');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.boxShadow = '0px 1.2rem 3.6rem rgba(0, 0, 0, 0.12)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.boxShadow = '0px 0.6rem 2.4rem rgba(0, 0, 0, 0.06)';
+            });
+        });
+
+        // Dark mode toggle simulation
+        const themeBtn = document.querySelector('[data-icon="dark_mode"]');
+        themeBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            const icon = themeBtn.innerText === 'dark_mode' ? 'light_mode' : 'dark_mode';
+            themeBtn.innerText = icon;
+        });
+
+        // Filter button logic
+        const filterBtns = document.querySelectorAll('.whitespace-nowrap');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+                    b.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                });
+                btn.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+                btn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+            });
+        });
+    </script>
+</body></html>
