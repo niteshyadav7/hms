@@ -306,68 +306,107 @@ export function GuestReviewsSection() {
 
         </div>
 
-        {/* 🌟 UNIQUE FEATURE 2: LIVE PREVIEW & STORY PUBLISHER FORM */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* 🌟 UNIQUE FEATURE 2: ETHEREAL PASSPORT JOURNAL PREVIEW & PUBLISH STUDIO */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-6">
           
-          {/* Left Column: Live Review Card Preview */}
+          {/* Left Column (6 Cols): Ethereal Passport & Memory Journal Preview */}
           <div className="lg:col-span-6 space-y-4">
-            <span className="text-xs font-black uppercase tracking-widest text-[#755b00] block">
-              Live Card Preview
-            </span>
-            
-            <div className="p-8 rounded-[28px] bg-gradient-to-br from-[#fdf7ed] to-[#f6f3f2] dark:from-[#1e1c22] dark:to-[#28252e] border-2 border-dashed border-[#c9a227]/60 shadow-lg space-y-4 relative">
-              <span className="text-[10px] bg-[#755b00] text-white px-3 py-1 rounded-full font-bold uppercase tracking-wider">
-                Live Story Preview
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-black uppercase tracking-widest text-[#755b00] dark:text-[#ffe08e] flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-sm">verified_user</span>
+                Live Passport & Memory Journal Preview
               </span>
+              <span className="text-[10px] bg-[#ffe08e]/40 text-[#755b00] px-3 py-1 rounded-full font-bold uppercase border border-[#c9a227]/40">
+                Real-Time Preview
+              </span>
+            </div>
+            
+            {/* Parchment Certificate / Passport Card */}
+            <div className="p-8 rounded-[32px] bg-gradient-to-br from-[#fffdfa] via-[#fcf6eb] to-[#f8f0de] dark:from-[#1e1c22] dark:to-[#25222b] border-2 border-[#c9a227]/60 shadow-[0_20px_50px_rgba(117,91,0,0.12)] space-y-6 relative overflow-hidden">
+              
+              {/* Top Header: Lumina Gold Wax Seal Stamp & Ribbon */}
+              <div className="flex items-start justify-between">
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-[#755b00] dark:text-[#ffe08e] block">
+                    Official Lumina Grand Guest Record
+                  </span>
+                  <h4 className="text-2xl font-black text-[#1b1c1c] dark:text-white font-display mt-0.5">
+                    {guestName ? `"${guestName}'s Stay Journal"` : '"Your Lumina Stay Memory"'}
+                  </h4>
+                </div>
 
-              <div className="flex text-amber-400 text-lg">
-                {"★".repeat(rating)}
+                {/* 3D Gold Embossed Wax Seal */}
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#c9a227] via-[#755b00] to-[#4b3a00] text-white flex flex-col items-center justify-center shadow-xl border-2 border-[#ffe08e] flex-shrink-0 animate-pulse">
+                  <span className="material-symbols-outlined text-lg text-[#ffe08e]">verified</span>
+                  <span className="text-[7px] font-black tracking-widest uppercase">LUMINA</span>
+                </div>
               </div>
 
-              <h4 className="font-extrabold text-lg text-[#1b1c1c] dark:text-white font-display">
-                {guestName ? `"${guestName}'s Lumina Experience"` : '"Your Stay Story Headline"'}
-              </h4>
-
-              <p className="text-xs text-[#4d4635] dark:text-gray-300 leading-relaxed font-medium">
-                {comment || "Your review thoughts and memories will appear here live as you type below..."}
-              </p>
-
-              <div className="flex items-center gap-3 pt-3 border-t border-black/5">
-                <div className="w-10 h-10 rounded-full bg-[#755b00] text-white font-extrabold flex items-center justify-center text-sm shadow-md">
-                  {guestName ? guestName.charAt(0).toUpperCase() : "G"}
-                </div>
-                <div>
-                  <span className="font-bold text-xs text-[#1b1c1c] dark:text-white block">
-                    {guestName || "Guest Name"}
+              {/* Dynamic Star Rating & Quote Text */}
+              <div className="space-y-3 bg-white/70 dark:bg-black/30 p-5 rounded-2xl border border-[#c9a227]/30 backdrop-blur-sm">
+                <div className="flex items-center justify-between">
+                  <div className="flex text-[#c9a227] text-xl">
+                    {"★".repeat(rating)}
+                  </div>
+                  <span className="text-[10px] font-bold bg-[#755b00] text-white px-2.5 py-0.5 rounded-full uppercase">
+                    Authenticated Stay
                   </span>
-                  <span className="text-[10px] text-emerald-600 font-extrabold flex items-center gap-0.5">
-                    <span className="material-symbols-outlined text-[12px]">verified</span> Verified Stay
+                </div>
+
+                <p className="text-xs md:text-sm text-[#4d4635] dark:text-gray-200 leading-relaxed font-body font-medium italic">
+                  &ldquo;{comment || "Your review thoughts, suite memories, and dining experiences will appear here live in real-time as you write in the journal..."}&rdquo;
+                </p>
+              </div>
+
+              {/* Passport Stamp Footer */}
+              <div className="flex items-center justify-between pt-4 border-t border-[#c9a227]/30 text-xs">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#755b00] to-[#48645d] text-white font-extrabold flex items-center justify-center text-sm shadow-md border border-white">
+                    {guestName ? guestName.charAt(0).toUpperCase() : "G"}
+                  </div>
+                  <div>
+                    <span className="font-extrabold text-xs text-[#1b1c1c] dark:text-white block">
+                      {guestName || "Guest Name"}
+                    </span>
+                    <span className="text-[10px] text-[#7f7663] font-medium block">
+                      Maldives Atoll Sanctuary • 2026
+                    </span>
+                  </div>
+                </div>
+
+                <div className="text-right">
+                  <span className="text-[9px] font-mono text-gray-400 block">SERIAL NO.</span>
+                  <span className="text-[10px] font-mono font-bold text-[#755b00] dark:text-[#ffe08e]">
+                    PASSPORT-LUM-{Math.floor(100000 + Math.random() * 900000)}
                   </span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Story Publisher Form */}
+          {/* Right Column (6 Cols): Ethereal Story Publisher Form Studio */}
           <div className="lg:col-span-6">
             <form
               onSubmit={handleSubmit}
-              className="bg-white dark:bg-[#1e1c22] p-8 rounded-[32px] border border-[#d1c5af]/50 shadow-xl space-y-5"
+              className="bg-white dark:bg-[#1e1c22] p-8 md:p-10 rounded-[32px] border border-[#d1c5af]/60 shadow-[0_20px_60px_rgba(117,91,0,0.1)] space-y-6"
             >
               <div>
-                <h3 className="text-xl font-black text-[#1b1c1c] dark:text-white font-display flex items-center gap-2">
-                  <span className="material-symbols-outlined text-[#755b00]">draw</span>
-                  Share Your Lumina Story
+                <div className="inline-flex items-center gap-2 bg-[#ffe08e]/30 text-[#755b00] px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest border border-[#c9a227]/40 mb-2">
+                  <span className="material-symbols-outlined text-xs">auto_awesome</span>
+                  Guest Experience Journal
+                </div>
+                <h3 className="text-2xl font-black text-[#1b1c1c] dark:text-white font-display flex items-center gap-2">
+                  Publish Your Story
                 </h3>
-                <p className="text-xs text-[#7f7663] dark:text-gray-400 mt-1 font-medium">
-                  Your story will be verified and published to the Lumina Guest Story Reel.
+                <p className="text-xs text-[#7f7663] dark:text-gray-400 mt-1 font-medium leading-relaxed">
+                  Contribute your memory to Lumina Grand&apos;s luxury resort journal.
                 </p>
               </div>
 
-              {/* Name */}
-              <div className="space-y-1">
+              {/* Guest Name */}
+              <div className="space-y-1.5">
                 <label className="text-xs font-extrabold text-[#1b1c1c] dark:text-white block">
-                  Your Name
+                  Your Full Name
                 </label>
                 <input
                   type="text"
@@ -375,17 +414,17 @@ export function GuestReviewsSection() {
                   value={guestName}
                   onChange={(e) => setGuestName(e.target.value)}
                   placeholder="e.g. Julian Sterling"
-                  className="w-full bg-[#f6f3f2] dark:bg-[#28252e] border border-[#d1c5af]/40 rounded-xl px-4 py-3 text-xs font-medium text-[#1b1c1c] dark:text-white outline-none focus:ring-2 focus:ring-[#755b00]"
+                  className="w-full bg-[#f6f3f2] dark:bg-[#28252e] border border-[#d1c5af]/50 rounded-xl px-4 py-3.5 text-xs font-semibold text-[#1b1c1c] dark:text-white outline-none focus:ring-2 focus:ring-[#755b00]"
                 />
               </div>
 
-              {/* Rating */}
-              <div className="space-y-1">
+              {/* Interactive Star Rating */}
+              <div className="space-y-1.5">
                 <label className="text-xs font-extrabold text-[#1b1c1c] dark:text-white block">
-                  Rating
+                  Rating & Satisfaction
                 </label>
-                <div className="flex items-center justify-between bg-[#f6f3f2] dark:bg-[#28252e] p-3 rounded-xl border border-[#d1c5af]/40">
-                  <div className="flex gap-1 text-2xl">
+                <div className="flex items-center justify-between bg-[#f6f3f2] dark:bg-[#28252e] p-3.5 rounded-xl border border-[#d1c5af]/50">
+                  <div className="flex gap-1.5 text-2xl">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <button
                         key={star}
@@ -398,7 +437,7 @@ export function GuestReviewsSection() {
                         <span
                           className={`${
                             star <= (hoverStar || rating)
-                              ? "text-amber-400"
+                              ? "text-amber-400 drop-shadow-sm"
                               : "text-gray-300 dark:text-gray-600"
                           }`}
                         >
@@ -407,33 +446,38 @@ export function GuestReviewsSection() {
                       </button>
                     ))}
                   </div>
-                  <span className="text-xs font-extrabold text-[#755b00] dark:text-[#ffe08e]">
-                    {rating} / 5 Stars
+                  <span className="text-xs font-black text-[#755b00] dark:text-[#ffe08e] uppercase tracking-wider">
+                    {rating === 5
+                      ? "5 ★ Exceptional Luxury"
+                      : rating === 4
+                      ? "4 ★ Outstanding Stay"
+                      : `${rating} / 5 Stars`}
                   </span>
                 </div>
               </div>
 
-              {/* Comment */}
-              <div className="space-y-1">
+              {/* Story Narrative Textarea */}
+              <div className="space-y-1.5">
                 <label className="text-xs font-extrabold text-[#1b1c1c] dark:text-white block">
-                  Your Stay Story
+                  Your Memory & Experience
                 </label>
                 <textarea
-                  rows={3}
+                  rows={4}
                   required
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
-                  placeholder="Tell us about your overwater suite, dining, or AI butler concierge experience..."
-                  className="w-full bg-[#f6f3f2] dark:bg-[#28252e] border border-[#d1c5af]/40 rounded-xl p-3.5 text-xs font-medium text-[#1b1c1c] dark:text-white outline-none focus:ring-2 focus:ring-[#755b00]"
+                  placeholder="Describe your overwater suite views, Michelin dining, spa hydrotherapy, or 24/7 AI butler concierge experience..."
+                  className="w-full bg-[#f6f3f2] dark:bg-[#28252e] border border-[#d1c5af]/50 rounded-xl p-4 text-xs font-semibold text-[#1b1c1c] dark:text-white outline-none focus:ring-2 focus:ring-[#755b00]"
                 />
               </div>
 
+              {/* Shimmering Golden Submit CTA */}
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full bg-gradient-to-r from-[#755b00] to-[#48645d] hover:from-[#584400] hover:to-[#304c46] text-white py-3.5 rounded-xl text-xs font-black shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer border-none active:scale-95 disabled:opacity-60"
+                className="w-full bg-gradient-to-r from-[#755b00] via-[#c9a227] to-[#48645d] hover:from-[#584400] hover:to-[#304c46] text-white py-4 rounded-xl text-xs font-black shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer border-none active:scale-95 disabled:opacity-60"
               >
-                <span>{submitting ? "Publishing Story..." : "Publish Guest Story ➔"}</span>
+                <span>{submitting ? "Securing Story..." : "Publish Guest Story to Journal ➔"}</span>
               </button>
             </form>
           </div>
