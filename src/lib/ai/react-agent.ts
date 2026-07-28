@@ -46,19 +46,16 @@ export class LuminaReActAgent {
     // -------------------------------------------------------------
     if (isBookingAction) {
       thoughtProcess += `Action: Executing createBookingTool on PostgreSQL DB.`;
-      const roomMatch = userMessage.match(/(?:overwater|sanctuary|lagoon|villa|suite)/i);
-      const roomType = roomMatch ? roomMatch[0] : "Overwater Sanctuary Suite";
 
       const toolResult = await LuminaAgenticTools.createBooking({
-        userEmail,
-        roomTypeName: roomType,
+        guestEmail: userEmail,
       });
 
       return {
         replyText: toolResult.message,
         thoughtProcess,
         actionExecuted: "createBookingTool",
-        actionType: toolResult.actionType,
+        actionType: "BOOKING_CONFIRMED",
         payloadData: toolResult.data,
         directLink: { label: "View Booking in Guest Portal ➔", url: "/guest/dashboard" },
         groundednessScore: 100,
@@ -68,7 +65,6 @@ export class LuminaReActAgent {
     } else if (isDiningAction) {
       thoughtProcess += `Action: Executing orderRoomServiceTool to kitchen matrix.`;
       const toolResult = await LuminaAgenticTools.orderRoomService({
-        userEmail,
         itemName: userMessage,
       });
 
@@ -76,7 +72,7 @@ export class LuminaReActAgent {
         replyText: toolResult.message,
         thoughtProcess,
         actionExecuted: "orderRoomServiceTool",
-        actionType: toolResult.actionType,
+        actionType: "DINING_DISPATCHED",
         payloadData: toolResult.data,
         directLink: { label: "Manage Suite Service & Digital Key ➔", url: "/guest/dashboard" },
         groundednessScore: 100,
@@ -94,7 +90,7 @@ export class LuminaReActAgent {
         replyText: toolResult.message,
         thoughtProcess,
         actionExecuted: "bookSpaAppointmentTool",
-        actionType: toolResult.actionType,
+        actionType: "SPA_RESERVED",
         payloadData: toolResult.data,
         directLink: { label: "View Wellness & Spa Schedule ➔", url: "/#amenities" },
         groundednessScore: 100,

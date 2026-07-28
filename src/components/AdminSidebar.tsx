@@ -17,9 +17,8 @@ export default function AdminSidebar() {
     { href: "/admin/dashboard", label: "Overview", icon: "dashboard" },
     { href: "/admin/bookings", label: "Bookings", icon: "calendar_month" },
     { href: "/admin/rooms", label: "Rooms", icon: "bed" },
-    { href: "/admin/housekeeping", label: "Housekeeping", icon: "cleaning_services" },
+    { href: "/admin/payments", label: "Financials & Gateway", icon: "payments" },
     { href: "/admin/guests", label: "Guests", icon: "group" },
-    { href: "/admin/dashboard#financials", label: "Financials", icon: "payments" },
   ];
 
   const handleConfirmLogout = async () => {
@@ -56,12 +55,7 @@ export default function AdminSidebar() {
           {/* Navigation Links in consistent order */}
           <nav className="space-y-1">
             {navItems.map((item) => {
-              const isOverviewActive = item.href === "/admin/dashboard" && pathname === "/admin/dashboard";
-              const isBookingsActive = item.href === "/admin/bookings" && pathname === "/admin/bookings";
-              const isRoomsActive = item.href === "/admin/rooms" && pathname === "/admin/rooms";
-              const isGuestsActive = item.href === "/admin/guests" && pathname === "/admin/guests";
-              
-              const active = isOverviewActive || isBookingsActive || isRoomsActive || isGuestsActive;
+              const active = pathname === item.href;
 
               return (
                 <Link

@@ -30,6 +30,8 @@ enum BookingStatus {
 enum PaymentMethod {
   PAY_AT_HOTEL
   ONLINE
+  UPI
+  NETBANKING
 }
 
 enum PaymentStatus {
@@ -117,4 +119,11 @@ model Review {
   comment    String
   roomId     String?
   createdAt  DateTime @default(now())
+}
+
+model SystemSetting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
 }
