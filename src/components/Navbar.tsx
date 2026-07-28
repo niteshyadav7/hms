@@ -115,11 +115,10 @@ export function Navbar() {
           <div className="hidden lg:flex items-center gap-6">
             <Link
               href="/rooms"
-              className={`text-xs font-bold py-1 no-underline transition-all duration-200 border-b-2 ${
-                isRoomsActive
+              className={`text-xs font-bold py-1 no-underline transition-all duration-200 border-b-2 ${isRoomsActive
                   ? "text-[#755b00] border-[#755b00]"
                   : "text-[#4d4635] border-transparent hover:text-[#755b00]"
-              }`}
+                }`}
             >
               Rooms & Suites
             </Link>
@@ -188,11 +187,10 @@ export function Navbar() {
                     {notifications.map((n) => (
                       <div
                         key={n.id}
-                        className={`p-2.5 rounded-xl border text-xs relative ${
-                          n.read
+                        className={`p-2.5 rounded-xl border text-xs relative ${n.read
                             ? "bg-[#f8f2fa]/50 dark:bg-[#25222a] border-[#cbc4d2]/20 text-gray-600 dark:text-gray-300"
                             : "bg-[#e9ddff]/40 dark:bg-[#4f378a]/30 border-[#4f378a]/30 font-semibold text-[#1d1b20] dark:text-white"
-                        }`}
+                          }`}
                       >
                         <div className="flex justify-between items-start">
                           <span className="font-extrabold text-[11px] block">{n.title}</span>
@@ -217,7 +215,7 @@ export function Navbar() {
               <div className="relative" ref={userMenuRef}>
                 <button
                   onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="bg-[#f8f2fa] dark:bg-[#25222a] hover:bg-[#e9ddff] text-[#4f378a] dark:text-amber-300 px-3.5 py-2 rounded-full border border-[#cbc4d2]/40 shadow-xs flex items-center gap-2 text-xs font-bold transition-all cursor-pointer active:scale-95"
+                  className="bg-[#f6f3f2] dark:bg-[#25222a] hover:bg-[#ffe08e]/40 text-[#755b00] dark:text-[#ffe08e] px-3.5 py-2 rounded-full border border-[#d1c5af]/50 shadow-xs flex items-center gap-2 text-xs font-bold transition-all cursor-pointer active:scale-95"
                   title="Account Menu"
                 >
                   <span className="material-symbols-outlined text-base">account_circle</span>
@@ -229,13 +227,13 @@ export function Navbar() {
 
                 {/* Luxury Profile Dropdown Menu */}
                 {showUserMenu && (
-                  <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-[#1d1b20] border border-[#cbc4d2]/40 rounded-2xl shadow-2xl p-4 z-50 text-left space-y-3 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-[#1d1b20] border border-[#d1c5af]/50 rounded-2xl shadow-2xl p-4 z-50 text-left space-y-3 animate-in fade-in zoom-in-95 duration-150">
                     <div className="border-b border-[#cbc4d2]/30 pb-3">
-                      <div className="font-extrabold text-xs text-[#1d1b20] dark:text-white leading-tight">
+                      <div className="font-extrabold text-xs text-[#1b1c1c] dark:text-white leading-tight">
                         {user.name}
                       </div>
-                      <div className="text-[11px] text-gray-500 truncate mt-0.5">{user.email}</div>
-                      <span className="inline-block mt-1.5 bg-amber-100 text-amber-900 text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">
+                      <div className="text-[11px] text-[#7f7663] truncate mt-0.5">{user.email}</div>
+                      <span className="inline-block mt-1.5 bg-[#ffe08e]/40 text-[#755b00] text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider border border-[#c9a227]/40">
                         Gold VIP Member
                       </span>
                     </div>
@@ -244,9 +242,9 @@ export function Navbar() {
                       <Link
                         href={user.role === "ADMIN" ? "/admin/dashboard" : "/guest/dashboard"}
                         onClick={() => setShowUserMenu(false)}
-                        className="flex items-center gap-2.5 p-2 rounded-xl text-xs font-bold text-gray-700 dark:text-gray-200 hover:bg-[#f8f2fa] dark:hover:bg-[#25222a] no-underline transition-all"
+                        className="flex items-center gap-2.5 p-2 rounded-xl text-xs font-bold text-[#1b1c1c] dark:text-gray-200 hover:bg-[#f6f3f2] dark:hover:bg-[#25222a] no-underline transition-all"
                       >
-                        <span className="material-symbols-outlined text-base text-[#4f378a]">dashboard</span>
+                        <span className="material-symbols-outlined text-base text-[#755b00]">dashboard</span>
                         <span>My Dashboard & Stays</span>
                       </Link>
 
