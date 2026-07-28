@@ -22,33 +22,62 @@ interface NotificationContextType {
 
 const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
 
+const DEFAULT_NOTIFICATIONS: SystemNotification[] = [
+  {
+    id: "notif_1",
+    title: "🍽️ Gourmet Dining Alert",
+    message: "Order #ORD-8812 (Truffle Eggs Benedict) has been dispatched to kitchen.",
+    type: "DINING",
+    timestamp: "2 mins ago",
+    read: false,
+  },
+  {
+    id: "notif_2",
+    title: "🧹 Housekeeping Matrix",
+    message: "Suite 402 (Overwater Sanctuary) cleaning completed & verified.",
+    type: "HOUSEKEEPING",
+    timestamp: "10 mins ago",
+    read: false,
+  },
+  {
+    id: "notif_3",
+    title: "🎉 VIP Reservation",
+    message: "New booking confirmed for Sunset Lagoon Suite #301.",
+    type: "BOOKING",
+    timestamp: "25 mins ago",
+    read: true,
+  },
+];
+
 export function NotificationProvider({ children }: { children: React.ReactNode }) {
-  const [notifications, setNotifications] = useState<SystemNotification[]>([
-    {
-      id: "notif_1",
-      title: "🍽️ Gourmet Dining Alert",
-      message: "Order #ORD-8812 (Truffle Eggs Benedict) has been dispatched to kitchen.",
-      type: "DINING",
-      timestamp: "2 mins ago",
-      read: false,
-    },
-    {
-      id: "notif_2",
-      title: "🧹 Housekeeping Matrix",
-      message: "Suite 402 (Overwater Sanctuary) cleaning completed & verified.",
-      type: "HOUSEKEEPING",
-      timestamp: "10 mins ago",
-      read: false,
-    },
-    {
-      id: "notif_3",
-      title: "🎉 VIP Reservation",
-      message: "New booking confirmed for Sunset Lagoon Suite #301.",
-      type: "BOOKING",
-      timestamp: "25 mins ago",
-      read: true,
-    },
-  ]);
+  const [notifications, setNotifications] = useState<SystemNotification[]>(DEFAULT_NOTIFICATIONS);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("lumina_notifications");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setNotifications(parsed);
+        }
+      }
+    } catch (err) {
+      console.error("Failed to load saved notifications:", err);
+    } finally {
+      setIsLoaded(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      try {
+        localStorage.setItem("lumina_notifications", JSON.stringify(notifications));
+      } catch (err) {
+        console.error("Failed to save notifications to localStorage:", err);
+      }
+    }
+  }, [notifications, isLoaded]);
 
   const unreadCount = notifications.filter((n) => !n.read).length;
 
