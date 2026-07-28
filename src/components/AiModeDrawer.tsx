@@ -153,7 +153,7 @@ export function AiModeDrawer({ isOpen, onClose }: Props) {
 
   const samplePrompts = [
     "Who am I?",
-    "Book Overwater Suite from 2024-11-20 to 2024-11-25",
+    "Book Overwater Suite for 3 nights starting tomorrow",
     "Order Truffle Eggs Benedict to my suite",
     "Book Celestial Lunar Massage for tomorrow",
     "Show overwater suites under ₹70,000",

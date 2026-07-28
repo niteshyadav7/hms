@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Calendar, Users, Search } from "lucide-react";
 import { Button } from "../atoms/Button";
+import { getTodayDateString } from "@/lib/utils/dates";
 
 interface SearchWidgetProps {
   initialCheckIn?: string;
@@ -13,8 +14,8 @@ interface SearchWidgetProps {
 }
 
 export const SearchWidget: React.FC<SearchWidgetProps> = ({
-  initialCheckIn = "2024-11-20",
-  initialCheckOut = "2024-11-25",
+  initialCheckIn = getTodayDateString(0),
+  initialCheckOut = getTodayDateString(5),
   initialGuests = "2 Adults",
   onSearch,
 }) => {

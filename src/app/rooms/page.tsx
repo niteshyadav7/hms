@@ -3,6 +3,7 @@
 import React, { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
+import { getTodayDateString } from "@/lib/utils/dates";
 
 interface Room {
   id: string;
@@ -24,8 +25,8 @@ function RoomCatalogContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const initialCheckIn = searchParams.get("checkIn") || "2024-10-24";
-  const initialCheckOut = searchParams.get("checkOut") || "2024-10-30";
+  const initialCheckIn = searchParams.get("checkIn") || getTodayDateString(0);
+  const initialCheckOut = searchParams.get("checkOut") || getTodayDateString(5);
   const initialGuests = searchParams.get("guests") || "2";
 
   const [rooms, setRooms] = useState<Room[]>([]);

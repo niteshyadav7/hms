@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
+import { getTodayDateString } from "@/lib/utils/dates";
 
 interface SpaService {
   id: string;
@@ -46,7 +47,7 @@ interface Props {
 
 export function SpaBookingModal({ isOpen, onClose }: Props) {
   const [selectedService, setSelectedService] = useState<SpaService>(SPA_SERVICES[0]);
-  const [date, setDate] = useState("2024-11-21");
+  const [date, setDate] = useState(getTodayDateString(1));
   const [timeSlot, setTimeSlot] = useState("10:00 AM");
   const [guests, setGuests] = useState("1 Person");
   const [submitting, setSubmitting] = useState(false);

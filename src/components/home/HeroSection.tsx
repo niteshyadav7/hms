@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import LiveWeatherWidget from "@/components/LiveWeatherWidget";
+import { getTodayDateString } from "@/lib/utils/dates";
 
 const HERO_SLIDES = [
   {
@@ -26,8 +27,8 @@ const HERO_SLIDES = [
 export default function HeroSection() {
   const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [checkIn, setCheckIn] = useState("2024-11-20");
-  const [checkOut, setCheckOut] = useState("2024-11-25");
+  const [checkIn, setCheckIn] = useState(getTodayDateString(0));
+  const [checkOut, setCheckOut] = useState(getTodayDateString(5));
   const [guests, setGuests] = useState("2 Adults, 1 Child");
 
   // Auto slide every 9 seconds (longer duration per slide)

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import PaymentReceiptModal from "@/components/PaymentReceiptModal";
+import { getTodayDateString } from "@/lib/utils/dates";
 
 interface Room {
   id: string;
@@ -32,8 +33,8 @@ function CheckoutFormContent() {
   const router = useRouter();
 
   const roomId = searchParams.get("roomId") || "";
-  const checkIn = searchParams.get("checkIn") || "2024-10-24";
-  const checkOut = searchParams.get("checkOut") || "2024-10-28";
+  const checkIn = searchParams.get("checkIn") || getTodayDateString(0);
+  const checkOut = searchParams.get("checkOut") || getTodayDateString(4);
   const guests = parseInt(searchParams.get("guests") || "2");
 
   const [room, setRoom] = useState<Room | null>(null);

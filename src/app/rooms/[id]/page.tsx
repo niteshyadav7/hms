@@ -4,6 +4,7 @@ import React, { useEffect, useState, use } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import VirtualTourModal from "@/components/VirtualTourModal";
+import { getTodayDateString } from "@/lib/utils/dates";
 
 interface Room {
   id: string;
@@ -32,8 +33,8 @@ export default function RoomDetailsPage({
   const [loading, setLoading] = useState(true);
   const [showVirtualTourModal, setShowVirtualTourModal] = useState(false);
 
-  const [checkIn, setCheckIn] = useState("2024-10-24");
-  const [checkOut, setCheckOut] = useState("2024-10-28");
+  const [checkIn, setCheckIn] = useState(getTodayDateString(0));
+  const [checkOut, setCheckOut] = useState(getTodayDateString(4));
   const [guests, setGuests] = useState("2 Adults, 1 Child");
 
   useEffect(() => {
