@@ -15,241 +15,138 @@ export default function HomeFooter() {
       return;
     }
     setSubscribed(true);
-    toast.success("Welcome to Lumina Circle! You have received VIP invitation status.");
+    toast.success("Welcome to Lumina Circle! VIP invitation activated.");
   };
 
   return (
-    <footer className="bg-[#19181a] text-white w-full relative overflow-hidden border-t-2 border-[#755b00]/40 font-body">
-      {/* Decorative Golden Ambient Glows */}
-      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#755b00]/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-[#48645d]/15 rounded-full blur-[140px] pointer-events-none" />
+    <footer className="bg-[#0f0e11] text-white w-full relative overflow-hidden py-16 px-4 md:px-8 font-body">
+      {/* Dynamic Modern Mesh Gradient Glows */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-[#755b00]/20 via-[#c9a227]/15 to-[#48645d]/20 rounded-full blur-[140px] pointer-events-none" />
 
-      {/* 🌟 1. VIP CIRCLE NEWSLETTER & GAZETTE BANNER */}
-      <div className="border-b border-white/10 bg-[#211f24]/80 backdrop-blur-md relative z-10">
-        <div className="max-w-[1340px] mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-6 space-y-2">
-            <span className="text-xs font-black uppercase tracking-widest text-[#ffe08e] flex items-center gap-2">
-              <span className="material-symbols-outlined text-sm text-[#ffe08e]">auto_awesome</span>
-              Exclusive Guest Privilege
-            </span>
-            <h3 className="text-2xl md:text-3xl font-extrabold text-white font-display">
-              Join Lumina Circle & Concierge Gazette
-            </h3>
+      <div className="max-w-[1340px] mx-auto relative z-10 space-y-12">
+        
+        {/* 🌟 1. FLOATING CURVED MODERN GLASS ISLAND */}
+        <div className="bg-[#18161c]/90 border border-white/10 rounded-[40px] p-8 md:p-14 shadow-2xl backdrop-blur-2xl relative overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          {/* Left Column: Big Statement Headline & Brand */}
+          <div className="lg:col-span-7 space-y-5">
+            <div className="inline-flex items-center gap-2 bg-[#ffe08e]/10 text-[#ffe08e] px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border border-[#ffe08e]/20">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              Baa Atoll Sanctuary • Maldives 2026
+            </div>
+
+            <h2 className="text-3xl md:text-5xl font-black text-white font-display leading-tight">
+              Ready for an extraordinary <br />
+              <span className="bg-gradient-to-r from-[#ffe08e] via-[#c9a227] to-[#cae9e0] bg-clip-text text-transparent">
+                overwater sanctuary experience?
+              </span>
+            </h2>
+
             <p className="text-xs md:text-sm text-gray-300 font-medium max-w-xl leading-relaxed">
-              Receive private invitations to seasonal overwater villa openings, Michelin culinary pop-ups, and private seaplane charter privileges.
+              Explore 360° turquoise lagoons, 24/7 Lumina AI Butler service, and Michelin dining. Book your bespoke holiday today.
             </p>
+
+            {/* Quick Action Pill Chips */}
+            <div className="flex flex-wrap gap-2.5 pt-2">
+              <Link
+                href="/rooms"
+                className="bg-gradient-to-r from-[#755b00] to-[#c9a227] hover:opacity-90 text-white px-5 py-2.5 rounded-full text-xs font-black shadow-md no-underline transition-all active:scale-95"
+              >
+                ✨ Book a Residence
+              </Link>
+              <Link
+                href="/#dining"
+                className="bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-full text-xs font-bold no-underline transition-all border border-white/10"
+              >
+                🍸 Michelin Dining
+              </Link>
+              <Link
+                href="/admin/dashboard"
+                className="bg-white/10 hover:bg-white/20 text-amber-300 px-5 py-2.5 rounded-full text-xs font-bold no-underline transition-all border border-amber-300/30 flex items-center gap-1.5"
+              >
+                <span className="material-symbols-outlined text-xs">dashboard</span>
+                Admin Center
+              </Link>
+            </div>
           </div>
 
-          <div className="lg:col-span-6">
+          {/* Right Column: Modern Newsletter Capsule */}
+          <div className="lg:col-span-5 bg-[#232029] p-7 rounded-[32px] border border-white/10 space-y-4 shadow-xl">
+            <div>
+              <h4 className="text-base font-extrabold text-white font-display">
+                Subscribe to Lumina Circle
+              </h4>
+              <p className="text-xs text-gray-400 mt-1">
+                Receive private seaplane charter offers & villa opening alerts.
+              </p>
+            </div>
+
             {subscribed ? (
-              <div className="bg-[#755b00]/30 border border-[#ffe08e]/40 p-4 rounded-2xl text-center text-xs font-bold text-[#ffe08e] flex items-center justify-center gap-2">
-                <span className="material-symbols-outlined">verified</span>
-                VIP Status Active. Invitation link delivered to {email}
+              <div className="bg-[#755b00]/30 border border-[#ffe08e]/40 p-3.5 rounded-xl text-center text-xs font-bold text-[#ffe08e] flex items-center justify-center gap-2">
+                <span className="material-symbols-outlined text-sm">verified</span>
+                Invitation Activated for {email}
               </div>
             ) : (
-              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
+              <form onSubmit={handleSubscribe} className="space-y-3">
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your private email address..."
-                  className="flex-1 bg-[#19181a] border border-[#755b00]/50 rounded-2xl px-5 py-3.5 text-xs text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-[#ffe08e]"
+                  placeholder="name@domain.com"
+                  className="w-full bg-[#16141a] border border-white/15 rounded-xl px-4 py-3 text-xs text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-[#ffe08e]"
                 />
                 <button
                   type="submit"
-                  className="bg-gradient-to-r from-[#755b00] via-[#c9a227] to-[#48645d] hover:from-[#584400] hover:to-[#304c46] text-white px-7 py-3.5 rounded-2xl text-xs font-black shadow-xl transition-all border-none cursor-pointer active:scale-95 whitespace-nowrap"
+                  className="w-full bg-white hover:bg-gray-100 text-[#121115] py-3.5 rounded-xl text-xs font-black shadow-lg transition-all border-none cursor-pointer active:scale-95"
                 >
                   Join Lumina Circle ➔
                 </button>
               </form>
             )}
           </div>
-        </div>
-      </div>
 
-      {/* 🌟 2. MAIN 4-COLUMN ARCHITECTURAL NAVIGATION GRID */}
-      <div className="max-w-[1340px] mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 relative z-10">
-        
-        {/* Column 1 (4 Cols): Lumina Grand Brand & Global Honors */}
-        <div className="lg:col-span-4 space-y-6">
-          <Link href="/" className="flex items-center gap-3 no-underline group">
-            <img
-              src="/logo.png"
-              alt="Lumina Grand Logo"
-              className="w-11 h-11 object-cover rounded-full shadow-xl border-2 border-[#ffe08e]/40 transition-transform group-hover:scale-105"
-            />
-            <div>
-              <span className="text-2xl font-black bg-gradient-to-r from-[#ffe08e] via-[#c9a227] to-[#cae9e0] bg-clip-text text-transparent tracking-tight font-display block leading-none">
-                Lumina Grand
-              </span>
-              <span className="text-[10px] font-bold tracking-widest uppercase text-gray-400 block mt-1">
-                Luxury Resorts & Sanctuaries
-              </span>
-            </div>
-          </Link>
-
-          <p className="text-xs text-gray-300 leading-relaxed font-medium">
-            Where architectural majesty meets 360° turquoise lagoon waters. Powered by 24/7 Lumina AI Butler Concierge and Michelin-starred epicurean dining.
-          </p>
-
-          <div className="space-y-2 pt-2 border-t border-white/10 text-xs">
-            <div className="flex items-center gap-2 text-amber-300 font-bold">
-              <span className="material-symbols-outlined text-sm">phone_in_talk</span>
-              <span>Global Concierge: +960 664-8800</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-400">
-              <span className="material-symbols-outlined text-sm">mark_email_read</span>
-              <span>concierge@luminagrand.com</span>
-            </div>
-          </div>
-
-          {/* Award Badges */}
-          <div className="flex items-center gap-3 pt-2">
-            <div className="bg-white/5 border border-white/10 p-2 px-3 rounded-xl text-[10px] text-amber-300 font-bold flex items-center gap-1.5">
-              <span>🏆 Forbes 5-Star 2026</span>
-            </div>
-            <div className="bg-white/5 border border-white/10 p-2 px-3 rounded-xl text-[10px] text-emerald-400 font-bold flex items-center gap-1.5">
-              <span>⭐ Michelin Key Resort</span>
-            </div>
-          </div>
         </div>
 
-        {/* Column 2 (2 Cols): Sanctuaries & Residences */}
-        <div className="lg:col-span-3 space-y-4">
-          <h4 className="text-xs font-black uppercase tracking-widest text-[#ffe08e] border-b border-[#ffe08e]/20 pb-2">
-            The Sanctuaries
-          </h4>
-          <ul className="space-y-2.5 text-xs text-gray-300 font-medium list-none p-0">
-            <li>
-              <Link href="/rooms" className="hover:text-[#ffe08e] transition-colors no-underline block">
-                Overwater Sunset Villa
-              </Link>
-            </li>
-            <li>
-              <Link href="/rooms" className="hover:text-[#ffe08e] transition-colors no-underline block">
-                Epicurean Penthouse Suite
-              </Link>
-            </li>
-            <li>
-              <Link href="/rooms" className="hover:text-[#ffe08e] transition-colors no-underline block">
-                Celestial Spa Hydro-Pavilion
-              </Link>
-            </li>
-            <li>
-              <Link href="/rooms" className="hover:text-[#ffe08e] transition-colors no-underline block">
-                Presidential Lagoon Sanctuary
-              </Link>
-            </li>
-            <li>
-              <Link href="/rooms" className="hover:text-[#ffe08e] transition-colors no-underline block">
-                Private Island Reserve
-              </Link>
-            </li>
-          </ul>
+        {/* 🌟 2. MODERN GIANT TYPOGRAPHY BRAND WATERMARK */}
+        <div className="relative py-4 text-center select-none overflow-hidden">
+          <span className="text-6xl sm:text-8xl md:text-[140px] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/15 via-white/5 to-transparent font-display block leading-none">
+            LUMINA GRAND
+          </span>
         </div>
 
-        {/* Column 3 (2 Cols): Curated Experiences */}
-        <div className="lg:col-span-2 space-y-4">
-          <h4 className="text-xs font-black uppercase tracking-widest text-[#ffe08e] border-b border-[#ffe08e]/20 pb-2">
-            Experiences
-          </h4>
-          <ul className="space-y-2.5 text-xs text-gray-300 font-medium list-none p-0">
-            <li>
-              <Link href="/#dining" className="hover:text-[#ffe08e] transition-colors no-underline block">
-                Aether Michelin Culinary
-              </Link>
-            </li>
-            <li>
-              <Link href="/#amenities" className="hover:text-[#ffe08e] transition-colors no-underline block">
-                Somatic Spa & Lunar Rituals
-              </Link>
-            </li>
-            <li>
-              <Link href="/#amenities" className="hover:text-[#ffe08e] transition-colors no-underline block">
-                Seaplane & Private Yacht
-              </Link>
-            </li>
-            <li>
-              <Link href="/#weddings" className="hover:text-[#ffe08e] transition-colors no-underline block">
-                Overwater Wedding Galas
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Column 4 (3 Cols): Operations & Admin Control */}
-        <div className="lg:col-span-3 space-y-4">
-          <h4 className="text-xs font-black uppercase tracking-widest text-[#ffe08e] border-b border-[#ffe08e]/20 pb-2">
-            Resort Operations
-          </h4>
-          <ul className="space-y-2.5 text-xs text-gray-300 font-medium list-none p-0">
-            <li>
-              <Link href="/admin/dashboard" className="hover:text-[#ffe08e] transition-colors no-underline flex items-center gap-1.5 text-amber-300 font-bold">
-                <span className="material-symbols-outlined text-xs">dashboard</span>
-                Admin Live Dispatch Matrix
-              </Link>
-            </li>
-            <li>
-              <Link href="/admin/payments" className="hover:text-[#ffe08e] transition-colors no-underline flex items-center gap-1.5 text-amber-300 font-bold">
-                <span className="material-symbols-outlined text-xs">payments</span>
-                Payment & Revenue Control
-              </Link>
-            </li>
-            <li>
-              <Link href="/booking/checkout" className="hover:text-[#ffe08e] transition-colors no-underline block">
-                Instant Reservation Checkout
-              </Link>
-            </li>
-            <li>
-              <Link href="/privacy-policy" className="hover:text-[#ffe08e] transition-colors no-underline block">
-                GST Tax Invoice Generator
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-
-      {/* 🌟 3. RESORT LOCATION & LIVE ENVIRONMENT BAR */}
-      <div className="bg-[#121113] border-t border-b border-white/10 py-3 text-xs text-gray-400">
-        <div className="max-w-[1340px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-3">
-          <div className="flex items-center gap-4 text-[11px] font-mono">
-            <span className="flex items-center gap-1 text-[#ffe08e] font-bold">
-              <span className="material-symbols-outlined text-xs">location_on</span>
-              Baa Atoll, UNESCO Biosphere Reserve
+        {/* 🌟 3. SLEEK MODERN NAVIGATION & SOCIAL ROW */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-6 border-t border-white/10 text-xs text-gray-400">
+          <div className="flex items-center gap-3">
+            <img src="/logo.png" alt="Lumina Grand Logo" className="w-8 h-8 rounded-full object-cover shadow-md" />
+            <span className="font-extrabold text-white tracking-tight text-sm">
+              Lumina Grand Luxury Resorts
             </span>
-            <span className="hidden sm:inline">•</span>
-            <span className="hidden sm:inline">04° 10&apos; N, 73° 30&apos; E</span>
           </div>
 
-          <div className="flex items-center gap-3 text-[11px] font-mono text-emerald-400 font-bold">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <span>100% Renewable Solar Powered Resort • Zero Single-Use Plastics</span>
+          <div className="flex flex-wrap justify-center gap-6 font-semibold text-gray-300">
+            <Link href="/rooms" className="hover:text-[#ffe08e] no-underline transition-colors">
+              Residences
+            </Link>
+            <Link href="/#amenities" className="hover:text-[#ffe08e] no-underline transition-colors">
+              Amenities
+            </Link>
+            <Link href="/admin/payments" className="hover:text-[#ffe08e] no-underline transition-colors text-amber-300">
+              Financials
+            </Link>
+            <Link href="/privacy-policy" className="hover:text-[#ffe08e] no-underline transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms-of-service" className="hover:text-[#ffe08e] no-underline transition-colors">
+              Terms of Service
+            </Link>
           </div>
-        </div>
-      </div>
 
-      {/* 🌟 4. BOTTOM COPYRIGHT & SOCIAL LEGAL BAR */}
-      <div className="max-w-[1340px] mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400 relative z-10">
-        <p className="m-0">
-          © 2026 Lumina Grand Hotel & Resort Group. All rights reserved.
-        </p>
-
-        <div className="flex flex-wrap justify-center gap-6 font-medium text-gray-400">
-          <Link href="/privacy-policy" className="hover:text-white no-underline transition-colors">
-            Privacy Policy
-          </Link>
-          <Link href="/terms-of-service" className="hover:text-white no-underline transition-colors">
-            Terms of Service
-          </Link>
-          <Link href="/sustainability" className="hover:text-white no-underline transition-colors">
-            Sustainability Charter
-          </Link>
-          <Link href="/careers" className="hover:text-white no-underline transition-colors">
-            Careers
-          </Link>
+          <p className="m-0 text-gray-500 font-mono text-[11px]">
+            © 2026 Lumina Grand. All rights reserved.
+          </p>
         </div>
+
       </div>
     </footer>
   );
