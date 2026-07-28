@@ -89,9 +89,11 @@ export function GuestReviewsSection() {
   const [comment, setComment] = useState("");
   const [hoverStar, setHoverStar] = useState(0);
   const [submitting, setSubmitting] = useState(false);
+  const [serialNo, setSerialNo] = useState("849201");
 
   useEffect(() => {
     fetchReviews();
+    setSerialNo(Math.floor(100000 + Math.random() * 900000).toString());
   }, []);
 
   const fetchReviews = async () => {
@@ -377,7 +379,7 @@ export function GuestReviewsSection() {
                 <div className="text-right">
                   <span className="text-[9px] font-mono text-gray-400 block">SERIAL NO.</span>
                   <span className="text-[10px] font-mono font-bold text-[#755b00] dark:text-[#ffe08e]">
-                    PASSPORT-LUM-{Math.floor(100000 + Math.random() * 900000)}
+                    PASSPORT-LUM-{serialNo}
                   </span>
                 </div>
               </div>
