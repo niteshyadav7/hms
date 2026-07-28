@@ -94,6 +94,65 @@ async function main() {
     });
   }
 
+  // 5. Seed Guest Testimonials & Reviews
+  const reviewsSeed = [
+    {
+      guestName: "Sophia Montgomery",
+      guestEmail: "sophia.m@luxurytravel.com",
+      rating: 5,
+      comment: "An absolute slice of paradise! The Overwater Sanctuary Villa exceeded every expectation. Lumina AI butler made room service ordering seamless.",
+      createdAt: new Date("2024-11-15T10:00:00Z"),
+    },
+    {
+      guestName: "Alexander Vance",
+      guestEmail: "alexander.vance@venture.com",
+      rating: 5,
+      comment: "Michelin dining at Aether was world-class. Spa treatments at Celestial Pavilion were deeply rejuvenating. Will return next season!",
+      createdAt: new Date("2024-11-18T14:30:00Z"),
+    },
+    {
+      guestName: "Elena Rostova",
+      guestEmail: "elena.r@designstudio.io",
+      rating: 5,
+      comment: "Bespoke VIP hospitality, pristine lagoon waters, and instant NFC digital key suite access. 10/10 experience!",
+      createdAt: new Date("2024-11-20T18:15:00Z"),
+    },
+    {
+      guestName: "Julian Sterling",
+      guestEmail: "j.sterling@lumina-voyage.com",
+      rating: 5,
+      comment: "The private infinity pool villa offers breathtaking sunset views. The 24/7 AI Concierge answered every query instantly.",
+      createdAt: new Date("2024-11-22T09:45:00Z"),
+    },
+    {
+      guestName: "Victoria Chen",
+      guestEmail: "victoria.chen@heritage.org",
+      rating: 5,
+      comment: "Celestial hydrotherapy spa treatment was transformative. Gourmet floating breakfast served directly in our pool was unforgettable.",
+      createdAt: new Date("2024-11-25T11:20:00Z"),
+    },
+    {
+      guestName: "Marcus Aurelius Thorne",
+      guestEmail: "m.thorne@globalcap.com",
+      rating: 5,
+      comment: "World-class luxury hospitality redefined. From private yacht transfers to personalized wine tasting, everything was perfection.",
+      createdAt: new Date("2024-11-28T16:00:00Z"),
+    },
+  ];
+
+  if ((prisma as any).review) {
+    for (const rev of reviewsSeed) {
+      try {
+        await (prisma as any).review.create({
+          data: rev,
+        });
+      } catch (err) {
+        // Skip duplicate seeding if already present
+      }
+    }
+    console.log("Seeded verified guest reviews!");
+  }
+
   console.log("Seeding completed successfully!");
 }
 

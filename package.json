@@ -11,8 +11,11 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@ai-sdk/react": "^4.0.43",
+    "@google/genai": "^2.13.0",
     "@prisma/client": "^5.22.0",
     "@reduxjs/toolkit": "^2.12.0",
+    "ai": "^7.0.40",
     "bcryptjs": "^3.0.3",
     "jsonwebtoken": "^9.0.3",
     "lucide-react": "^1.26.0",
@@ -34,7 +37,11 @@
     "eslint-config-next": "16.2.11",
     "prisma": "^5.22.0",
     "tailwindcss": "^4",
+    "tsx": "^4.19.2",
     "typescript": "^5",
     "vitest": "^4.1.10"
+  },
+  "prisma": {
+    "seed": "npx tsx prisma/seed.ts"
   }
 }

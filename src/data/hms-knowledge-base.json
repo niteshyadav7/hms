@@ -1,0 +1,135 @@
+{
+  "version": "1.0.0",
+  "resortName": "Lumina Grand Maldives",
+  "lastUpdated": "2026-07-28",
+  "documents": [
+    {
+      "id": "room_overwater_sanctuary",
+      "category": "ROOM",
+      "title": "Oceanfront Overwater Sanctuary Suite",
+      "content": "Luxury Overwater Sanctuary Suite built directly over the turquoise Maldivian lagoon. Features private glass floor viewports, private infinity dip pool, outdoor rain shower, king bed, and sunset view deck. Base rate ₹65,000 per night. Capacity 2 Adults, 1 Child. Includes complimentary gourmet breakfast and 24/7 priority butler service.",
+      "metadata": {
+        "roomId": "r101",
+        "roomType": "Overwater Sanctuary",
+        "basePrice": 65000,
+        "maxGuests": 3,
+        "amenities": ["Private Infinity Pool", "Glass Floor Viewport", "Butler Service", "Free High-Speed WiFi", "Sunset View Deck"],
+        "action": "BOOK_ROOM",
+        "image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80"
+      }
+    },
+    {
+      "id": "room_lagoon_villa",
+      "category": "ROOM",
+      "title": "Lagoon View Villa",
+      "content": "Spacious tropical Lagoon View Villa surrounded by lush coconut palms and powder white sands. Features direct beach access, private plunge pool, king canopy bed, and outdoor jacuzzi. Base rate ₹48,000 per night. Capacity 2 Adults.",
+      "metadata": {
+        "roomId": "r102",
+        "roomType": "Lagoon View Villa",
+        "basePrice": 48000,
+        "maxGuests": 2,
+        "amenities": ["Direct Beach Access", "Private Plunge Pool", "Outdoor Jacuzzi", "Free High-Speed WiFi"],
+        "action": "BOOK_ROOM",
+        "image": "https://images.unsplash.com/photo-[#566073771259]-6a8506099945?auto=format&fit=crop&w=1200&q=80"
+      }
+    },
+    {
+      "id": "room_presidential_penthouse",
+      "category": "ROOM",
+      "title": "Presidential Glass Penthouse",
+      "content": "Ultra-exclusive 3-bedroom Presidential Glass Penthouse with 360-degree panoramic ocean views, private helipad landing priority, private wine cellar, dedicated master chef, and 12-meter oceanfront infinity pool. Base rate ₹1,50,000 per night. Capacity up to 6 Guests.",
+      "metadata": {
+        "roomId": "r103",
+        "roomType": "Presidential Penthouse",
+        "basePrice": 150000,
+        "maxGuests": 6,
+        "amenities": ["3 Bedrooms", "Private Master Chef", "360 Panoramic View", "12m Infinity Pool", "Helipad Access"],
+        "action": "BOOK_ROOM",
+        "image": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80"
+      }
+    },
+    {
+      "id": "policy_checkin_checkout",
+      "category": "FAQ",
+      "title": "Check-in and Check-out Times & Early/Late Policy",
+      "content": "Standard Check-in time at Lumina Grand is 3:00 PM (15:00). Standard Check-out time is 12:00 PM (12:00 noon). Complimentary early check-in (from 11:00 AM) and late check-out (up to 2:00 PM) are available for Platinum & Diamond VIP loyalty members upon request.",
+      "metadata": {
+        "topic": "Check-in Policy",
+        "checkInTime": "15:00",
+        "checkOutTime": "12:00",
+        "action": "REQUEST_LATE_CHECKOUT"
+      }
+    },
+    {
+      "id": "policy-[#airport]-transfer",
+      "category": "FAQ",
+      "title": "Malé International Airport Luxury Transfer Policy",
+      "content": "Lumina Grand provides 24/7 VIP private seaplane and luxury yacht speed boat transfers from Malé Velana International Airport (MLE). Yacht transfer takes 25 minutes. Seaplane transfer takes 15 minutes. Transfers can be reserved via the Lumina AI Concierge.",
+      "metadata": {
+        "topic": "Airport Transfer",
+        "seaplaneTime": "15 mins",
+        "yachtTime": "25 mins",
+        "action": "BOOK_TRANSFER"
+      }
+    },
+    {
+      "id": "spa_celestial_hydrotherapy",
+      "category": "SPA",
+      "title": "Celestial Hydrotherapy & Volcanic Stone Massage",
+      "content": "Signature 90-minute Celestial Lunar Volcanic Stone Massage in overwater glass-bottom treatment pavilion. Includes organic coconut oil infusion, hot basalt stone therapy, and herbal tea ceremony. Price ₹12,500.",
+      "metadata": {
+        "treatmentId": "s1",
+        "duration": "90 Mins",
+        "price": 12500,
+        "action": "BOOK_SPA"
+      }
+    },
+    {
+      "id": "dining_truffle_eggs_benedict",
+      "category": "DINING",
+      "title": "Truffle Eggs Benedict",
+      "content": "Poached organic farm eggs, black truffle hollandaise sauce, toasted artisan brioche, and crispy Italian prosciutto. Served in-room 24/7. Price ₹650.",
+      "metadata": {
+        "itemId": "m1",
+        "mealType": "BREAKFAST",
+        "price": 650,
+        "action": "ORDER_DINING"
+      }
+    },
+    {
+      "id": "dining_wagyu_ribeye",
+      "category": "DINING",
+      "title": "A5 Japanese Wagyu Ribeye Steak (250g)",
+      "content": "A5 Japanese Wagyu beef ribeye grilled over binchotan charcoal, served with smoked rosemary jus, black truffle mashed potatoes, and roasted wild asparagus. Price ₹2,400.",
+      "metadata": {
+        "itemId": "m3",
+        "mealType": "MAIN",
+        "price": 2400,
+        "action": "ORDER_DINING"
+      }
+    },
+    {
+      "id": "event_sunset_wedding",
+      "category": "EVENT",
+      "title": "Sunset Beachfront Wedding Package",
+      "content": "Exclusive private island beachfront wedding package. Includes license, floral arch, 5-course plated Michelin dinner, champagne toast, and private lagoon fireworks display. Base package ₹4,500,000 for up to 100 guests.",
+      "metadata": {
+        "eventType": "WEDDING",
+        "basePrice": 450000,
+        "action": "BUILD_EVENT_QUOTE"
+      }
+    },
+    {
+      "id": "resort_reviews_and_ratings",
+      "category": "FAQ",
+      "title": "Verified Guest Reviews and Resort Ratings",
+      "content": "Lumina Grand Maldives is rated 4.9 / 5.0 Stars based on over 128 verified guest stays. Guests praise the bespoke Overwater Sanctuary Villas, Michelin-starred Aether dining, 24/7 AI Mode concierge, and Celestial Hydrotherapy Spa.",
+      "metadata": {
+        "topic": "Resort Reviews and Star Ratings",
+        "rating": 4.9,
+        "totalReviews": 128,
+        "action": "VIEW_REVIEWS"
+      }
+    }
+  ]
+}

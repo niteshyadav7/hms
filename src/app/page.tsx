@@ -3,6 +3,7 @@
 import HeroSection from "@/components/home/HeroSection";
 import FeaturedSection from "@/components/home/FeaturedSection";
 import BentoGridSection from "@/components/home/BentoGridSection";
+import GuestReviewsSection from "@/components/GuestReviewsSection";
 import HomeFooter from "@/components/home/HomeFooter";
 
 export default function HomePage() {
@@ -17,7 +18,10 @@ export default function HomePage() {
       {/* 3. Curated Experiences Bento Grid */}
       <BentoGridSection />
 
-      {/* 4. Lumina Grand Footer */}
+      {/* 4. Guest Reviews & Star Ratings */}
+      <GuestReviewsSection />
+
+      {/* 5. Lumina Grand Footer */}
       <HomeFooter />
     </div>
   );

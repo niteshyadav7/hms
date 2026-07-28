@@ -9,7 +9,7 @@ export const FeaturedCollection: React.FC = () => {
   const residences = [
     {
       title: "Azure Ocean Residence",
-      price: "From $1,200/night",
+      price: "From ₹1,200/night",
       imageUrl:
         "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=85",
       specs: [
@@ -19,7 +19,7 @@ export const FeaturedCollection: React.FC = () => {
     },
     {
       title: "The Lumina Penthouse",
-      price: "From $2,450/night",
+      price: "From ₹2,450/night",
       imageUrl:
         "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=85",
       specs: [
@@ -29,7 +29,7 @@ export const FeaturedCollection: React.FC = () => {
     },
     {
       title: "Garden Sanctuary Suite",
-      price: "From $890/night",
+      price: "From ₹890/night",
       imageUrl:
         "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=85",
       specs: [

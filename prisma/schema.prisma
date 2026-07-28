@@ -108,3 +108,13 @@ model Payment {
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
 }
+
+model Review {
+  id         String   @id @default(uuid())
+  guestName  String
+  guestEmail String?
+  rating     Int      @default(5)
+  comment    String
+  roomId     String?
+  createdAt  DateTime @default(now())
+}

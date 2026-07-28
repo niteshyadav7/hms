@@ -86,9 +86,8 @@ export function LiveWeatherWidget() {
           <div className="flex items-center gap-1.5">
             <span className="font-extrabold text-sm text-[#4f378a]">Maldives Lagoon</span>
             <span
-              className={`w-2 h-2 rounded-full ${
-                isLive ? "bg-emerald-500 animate-pulse" : "bg-amber-400"
-              }`}
+              className={`w-2 h-2 rounded-full ${isLive ? "bg-emerald-500 animate-pulse" : "bg-amber-400"
+                }`}
               title={isLive ? "Live API Feed Active" : "Connecting..."}
             />
             {isLive && (

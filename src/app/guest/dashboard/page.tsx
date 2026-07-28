@@ -3,13 +3,14 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/redux/hooks";
+import { logout } from "@/redux/slices/authSlice";
 import { toast } from "react-hot-toast";
 import RoomServiceModal from "@/components/RoomServiceModal";
 import DigitalKeyModal from "@/components/DigitalKeyModal";
 import SpaBookingModal from "@/components/SpaBookingModal";
 import ResortMapModal from "@/components/ResortMapModal";
 import GuestReviewModal from "@/components/GuestReviewModal";
-import LiveWeatherWidget from "@/components/LiveWeatherWidget";
 
 interface Booking {
   id: string;
@@ -24,6 +25,7 @@ interface Booking {
 
 export default function GuestPortalPage() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [user, setUser] = useState<any>(null);
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
@@ -45,7 +47,6 @@ export default function GuestPortalPage() {
           setUser(data.data.user);
           return fetch(`/api/bookings?userId=${data.data.user.id}`);
         } else {
-          // If not logged in, redirect to login page
           router.push("/login");
           return null;
         }
@@ -78,6 +79,19 @@ export default function GuestPortalPage() {
   useEffect(() => {
     loadGuestData();
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/me", { method: "POST" });
+      await fetch("/api/auth/login", { method: "DELETE" });
+    } catch (err) {
+      console.error("Logout error:", err);
+    }
+    dispatch(logout());
+    toast.success("Signed out successfully");
+    router.push("/");
+    router.refresh();
+  };
 
   const handleCancelBooking = async (id: string) => {
     if (!confirm("Are you sure you want to cancel this booking?")) return;
@@ -145,11 +159,6 @@ export default function GuestPortalPage() {
             </span>
           </div>
         </div>
-      </div>
-
-      {/* Live Island Weather & Tides Bar */}
-      <div className="mb-10">
-        <LiveWeatherWidget />
       </div>
 
       {/* Grid Container */}
@@ -402,7 +411,7 @@ export default function GuestPortalPage() {
               onClick={() => setShowSpaModal(true)}
               className="flex items-center gap-4 p-3.5 rounded-xl bg-[#ece6ee]/50 hover:bg-[#e9ddff] transition-all text-left border-none cursor-pointer group"
             >
-              <span className="material-symbols-outlined p-2 bg-white rounded-full text-[#4f378a] shadow-sm group-hover:bg-[#e9ddff]">
+              <span className="material-symbols-outlined p-2 bg-[#4f378a] text-amber-300 rounded-full shadow-sm">
                 spa
               </span>
               <div>

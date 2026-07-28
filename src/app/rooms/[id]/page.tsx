@@ -369,17 +369,17 @@ export default function RoomDetailsPage({
             <div className="space-y-2 pt-2 border-t border-[#cbc4d2]/30 text-xs text-[#494551]">
               <div className="flex justify-between">
                 <span>
-                  ${basePrice} x {nights} nights
+                  ₹{basePrice} x {nights} nights
                 </span>
-                <span className="font-semibold text-[#1d1b20]">${roomTotal}</span>
+                <span className="font-semibold text-[#1d1b20]">₹{roomTotal}</span>
               </div>
               <div className="flex justify-between">
                 <span>Resort Fee (Lumina+)</span>
-                <span className="font-semibold text-[#1d1b20]">${resortFee}</span>
+                <span className="font-semibold text-[#1d1b20]">₹{resortFee}</span>
               </div>
               <div className="flex justify-between text-sm font-bold text-[#1d1b20] pt-2">
                 <span>Total</span>
-                <span className="text-[#4f378a]">${grandTotal}</span>
+                <span className="text-[#4f378a]">₹{grandTotal}</span>
               </div>
             </div>
 

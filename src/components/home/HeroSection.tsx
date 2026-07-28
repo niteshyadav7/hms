@@ -113,7 +113,7 @@ export default function HeroSection() {
           Ethereal Luxury, <br />
           Defined by Nature.
         </h1>
-        <p className="text-white text-base md:text-lg max-w-2xl mx-auto font-medium leading-relaxed bg-black/40 backdrop-blur-md px-6 py-3.5 rounded-2xl border border-white/15 shadow-xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+        <p className="text-white text-base md:text-lg max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-[0_2px_16px_rgba(0,0,0,0.95)]">
           Experience the pinnacle of bespoke travel in our sanctuary of light and glass, nestled where the sky meets the sea.
         </p>
 
