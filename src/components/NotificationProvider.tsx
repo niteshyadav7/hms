@@ -22,59 +22,46 @@ interface NotificationContextType {
 
 const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
 
-const DEFAULT_NOTIFICATIONS: SystemNotification[] = [
-  {
-    id: "notif_1",
-    title: "🍽️ Gourmet Dining Alert",
-    message: "Order #ORD-8812 (Truffle Eggs Benedict) has been dispatched to kitchen.",
-    type: "DINING",
-    timestamp: "2 mins ago",
-    read: false,
-  },
-  {
-    id: "notif_2",
-    title: "🧹 Housekeeping Matrix",
-    message: "Suite 402 (Overwater Sanctuary) cleaning completed & verified.",
-    type: "HOUSEKEEPING",
-    timestamp: "10 mins ago",
-    read: false,
-  },
-  {
-    id: "notif_3",
-    title: "🎉 VIP Reservation",
-    message: "New booking confirmed for Sunset Lagoon Suite #301.",
-    type: "BOOKING",
-    timestamp: "25 mins ago",
-    read: true,
-  },
-];
-
 export function NotificationProvider({ children }: { children: React.ReactNode }) {
-  const [notifications, setNotifications] = useState<SystemNotification[]>(DEFAULT_NOTIFICATIONS);
+  const [notifications, setNotifications] = useState<SystemNotification[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    fetchDynamicNotifications();
+  }, []);
+
+  const fetchDynamicNotifications = async () => {
     try {
-      const saved = localStorage.getItem("lumina_notifications");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setNotifications(parsed);
-        }
+      // 1. Check local read status memory
+      const readMapJson = localStorage.getItem("lumina_read_notif_ids");
+      const readIds: string[] = readMapJson ? JSON.parse(readMapJson) : [];
+
+      // 2. Fetch live real-time system notifications from DB API
+      const res = await fetch("/api/notifications");
+      const json = await res.json();
+
+      if (json.success && Array.isArray(json.notifications)) {
+        const synced = json.notifications.map((n: SystemNotification) => ({
+          ...n,
+          read: n.read || readIds.includes(n.id),
+        }));
+        setNotifications(synced);
       }
     } catch (err) {
-      console.error("Failed to load saved notifications:", err);
+      console.error("Failed to fetch dynamic notifications:", err);
     } finally {
       setIsLoaded(true);
     }
-  }, []);
+  };
 
+  // Sync read status IDs to localStorage
   useEffect(() => {
     if (isLoaded) {
       try {
-        localStorage.setItem("lumina_notifications", JSON.stringify(notifications));
+        const readIds = notifications.filter((n) => n.read).map((n) => n.id);
+        localStorage.setItem("lumina_read_notif_ids", JSON.stringify(readIds));
       } catch (err) {
-        console.error("Failed to save notifications to localStorage:", err);
+        console.error("Failed to sync read status:", err);
       }
     }
   }, [notifications, isLoaded]);
@@ -99,14 +86,14 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
         <div
           className={`${
             t.visible ? "animate-in fade-in slide-in-from-top-5" : "animate-out fade-out"
-          } max-w-sm w-full bg-[#1d1b20] text-white p-4 rounded-2xl shadow-2xl border border-[#cbc4d2]/40 flex items-start gap-3 pointer-events-auto`}
+          } max-w-sm w-full bg-[#1b1c1c] text-white p-4 rounded-2xl shadow-2xl border border-[#c9a227]/40 flex items-start gap-3 pointer-events-auto font-body`}
         >
-          <div className="w-9 h-9 rounded-xl bg-[#4f378a] flex items-center justify-center flex-shrink-0 text-amber-300">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#755b00] to-[#c9a227] flex items-center justify-center flex-shrink-0 text-white">
             <span className="material-symbols-outlined text-xl">notifications_active</span>
           </div>
           <div className="flex-1">
-            <h4 className="font-extrabold text-xs text-amber-300">{title}</h4>
-            <p className="text-[11px] text-gray-200 mt-0.5 leading-relaxed">{message}</p>
+            <h4 className="font-extrabold text-xs text-[#ffe08e]">{title}</h4>
+            <p className="text-[11px] text-gray-200 mt-0.5 leading-relaxed font-medium">{message}</p>
           </div>
           <button
             onClick={() => toast.dismiss(t.id)}
@@ -120,12 +107,36 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
     );
   };
 
-  const markAllAsRead = () => {
-    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+  const markAllAsRead = async () => {
+    const updated = notifications.map((n) => ({ ...n, read: true }));
+    setNotifications(updated);
+
+    try {
+      const readIds = updated.map((n) => n.id);
+      localStorage.setItem("lumina_read_notif_ids", JSON.stringify(readIds));
+      await fetch("/api/notifications", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "MARK_ALL_READ" }),
+      });
+    } catch (err) {
+      console.error("Failed to sync markAllAsRead API:", err);
+    }
   };
 
-  const clearNotification = (id: string) => {
-    setNotifications((prev) => prev.filter((n) => n.id !== id));
+  const clearNotification = async (id: string) => {
+    const updated = notifications.filter((n) => n.id !== id);
+    setNotifications(updated);
+
+    try {
+      await fetch("/api/notifications", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "CLEAR", id }),
+      });
+    } catch (err) {
+      console.error("Failed to sync clearNotification API:", err);
+    }
   };
 
   return (
