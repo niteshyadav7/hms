@@ -9,7 +9,7 @@ export default function FeaturedSection() {
       title: "Azure Ocean Residence",
       price: "From ₹1,200/night",
       image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuB1oDXNIAsPdpWEWOYiPyUgeIdkfURwx1x1SYsc0tQQRBZpF0mShEXHNxw3kMYP-G_5wE5ZUM-oRUWQnt3xCYEB6MIsNQO_gP71YgwspcGZNitjFYVgiF6iXBri-C2DrzsDegHeKWGYMiMXfeGEMBH28Iwbed-bWmcUwOkrJIq72cChAwMTJ9YDB26C48GOBHYweQSww0tcHduUI2_uJDjyGeeuwF3XssUsvIYoSDoCuNi2bCcsjGxz40w8zi_wG33jLY3Xe5XjHfmE",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=85",
       specs: [
         { icon: "square_foot", text: "850 sq ft" },
         { icon: "king_bed", text: "King Suite" },
@@ -19,7 +19,7 @@ export default function FeaturedSection() {
       title: "The Lumina Penthouse",
       price: "From ₹2,450/night",
       image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuAmvdmFWMpilKJ1HucUCfi8vWxTE9pJtQwqo-Zc86d0vVEYGtd6n_rhZqHvqGGDY6Aq66xxCvU7_h7PC8X51HFd4pa9NWRWWEwm_vcRweffxIx5VHLvucSeUhNHLjKp-xFxAjgWHZneOeLUlFbI_-eEDZlSIbLSscR0pzW3uE7Yyf1a3ZMxyxgiIljxM8jYsYji1YTbKSGfldChlTNK0EuNugSoOW_ra6QKq5YiqiZtznZn45a5drU9HjnAEf03EMpJF-LN-hnfNDiw",
+        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=85",
       specs: [
         { icon: "pool", text: "Private Pool" },
         { icon: "home_work", text: "2,100 sq ft" },
@@ -29,7 +29,7 @@ export default function FeaturedSection() {
       title: "Garden Sanctuary Suite",
       price: "From ₹890/night",
       image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuALrcEBfi2BzNNiBNwufkLe3HQZg02U_BMd1pWZRUDHhaXr4pJaT9cDWs8ggpgvKRzUXGSGczwR4_UPxdu9jCq1okbErq_Y7RwIH333HKCuk_ysp2YdpouycztN_tMzoPSn5FQHBqBtEonEiriMxj52PdpPXHvCXyxBuje4QpJPORpQRu9eUrhAf1lI2tzylFwSisZ2r9-D8nYlOpzHgu9Kob3WyvlshEvL4OgQLhgY5FXEUVvAShLIX9K0s8mVkSG78RhTTKR58BrT",
+        "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=85",
       specs: [
         { icon: "nature_people", text: "Garden View" },
         { icon: "bathtub", text: "Spa Bath" },

@@ -1,13 +1,50 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import LiveWeatherWidget from "@/components/LiveWeatherWidget";
+
+const HERO_SLIDES = [
+  {
+    url: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=2000&q=85",
+    title: "Overwater Sanctuary",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2000&q=85",
+    title: "Twilight Infinity Vista",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=2000&q=85",
+    title: "Golden Oceanfront Oasis",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=2000&q=85",
+    title: "Panoramic Glass Villa",
+  },
+];
 
 export default function HeroSection() {
   const router = useRouter();
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [checkIn, setCheckIn] = useState("2024-11-20");
   const [checkOut, setCheckOut] = useState("2024-11-25");
   const [guests, setGuests] = useState("2 Adults, 1 Child");
+
+  // Auto slide every 9 seconds (longer duration per slide)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 9000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+  };
+
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,40 +56,83 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative h-[870px] w-full flex items-center justify-center px-4 md:px-12 overflow-hidden">
-      {/* Background Image */}
+    <section className="relative h-[870px] w-full flex items-center justify-center px-4 md:px-12 overflow-hidden group">
+      {/* Auto Carousel Slides */}
       <div className="absolute inset-0 z-0">
-        <div
-          className="w-full h-full bg-cover bg-center transition-transform duration-1000 hover:scale-105"
-          style={{
-            backgroundImage:
-              "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCC9Fw2uDb5cELlAcXsTRK9KDP8JlUt_7Qhgp9MsJjeRBYp7Cor7Ct6miOpc06Cap_rqSiPx_EbEbmLakv8THJoVn_W_lybRCu7WcXjSh573LJH2ueq2T2sEkmR2_tuxg-P-WbATOxECic-g3mN3V89fKRUAw3Asx5YZCLCl2AO3rSMKEhGxXYGQtC2A4OPNTgTzY27lGW9dE1xxLeiIr-8PviWVQqq-5GFROpBnAYpPJEboM2l492YBfNu61sSqfJ-L6sPprA3dzN5')",
-          }}
-        />
-        <div className="absolute inset-0 bg-black/20" />
+        {HERO_SLIDES.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-[2000ms] ease-in-out ${
+              index === currentSlide
+                ? "opacity-100 scale-100 z-10"
+                : "opacity-0 scale-105 z-0"
+            }`}
+            style={{ backgroundImage: `url('${slide.url}')` }}
+          />
+        ))}
+        {/* Dark Gradient Scrim Overlay for Maximum Contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70 z-20 pointer-events-none" />
+      </div>
+
+      {/* Manual Slide Navigation Arrows */}
+      <button
+        onClick={handlePrevSlide}
+        className="absolute left-6 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/40 hover:bg-black/70 text-white backdrop-blur-md transition-all cursor-pointer border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 shadow-xl"
+        title="Previous Slide"
+      >
+        <span className="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
+      </button>
+
+      <button
+        onClick={handleNextSlide}
+        className="absolute right-6 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/40 hover:bg-black/70 text-white backdrop-blur-md transition-all cursor-pointer border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 shadow-xl"
+        title="Next Slide"
+      >
+        <span className="material-symbols-outlined text-2xl">arrow_forward_ios</span>
+      </button>
+
+      {/* Slide Indicators (Dots) */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3">
+        {HERO_SLIDES.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`h-2.5 rounded-full transition-all duration-500 border-none cursor-pointer shadow-md ${
+              index === currentSlide
+                ? "w-8 bg-white"
+                : "w-2.5 bg-white/50 hover:bg-white/90"
+            }`}
+            title={`Slide ${index + 1}`}
+          />
+        ))}
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 text-center max-w-4xl mx-auto space-y-8 w-full -mt-64">
-        <h1 className="text-4xl md:text-6xl font-bold text-white drop-shadow-lg leading-tight tracking-tight">
+      <div className="relative z-30 text-center max-w-4xl mx-auto space-y-6 w-full -mt-64">
+        <h1 className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)] leading-tight tracking-tight">
           Ethereal Luxury, <br />
           Defined by Nature.
         </h1>
-        <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto drop-shadow-md font-light leading-relaxed">
+        <p className="text-white text-base md:text-lg max-w-2xl mx-auto font-medium leading-relaxed bg-black/40 backdrop-blur-md px-6 py-3.5 rounded-2xl border border-white/15 shadow-xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
           Experience the pinnacle of bespoke travel in our sanctuary of light and glass, nestled where the sky meets the sea.
         </p>
+
+        {/* Live Weather & Tides Bar */}
+        <div className="pt-2">
+          <LiveWeatherWidget />
+        </div>
 
         {/* Search Widget */}
         <form
           onSubmit={handleSearch}
-          className="glass-panel aura-shadow rounded-xl p-4 md:p-6 mt-12 grid grid-cols-1 md:grid-cols-4 gap-4 items-end text-left border border-white/20 w-full"
+          className="bg-white/95 backdrop-blur-2xl rounded-2xl p-5 md:p-6 mt-8 grid grid-cols-1 md:grid-cols-4 gap-4 items-end text-left border border-white/80 shadow-[0_12px_40px_rgba(0,0,0,0.3)] w-full"
         >
           <div className="space-y-2">
-            <label className="text-sm font-medium text-[#494551] flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-[18px]">calendar_today</span> Check-in
+            <label className="text-xs font-bold text-[#1d1b20] uppercase tracking-wider flex items-center gap-1.5">
+              <span className="material-symbols-outlined text-[18px] text-[#4f378a]">calendar_today</span> Check-in
             </label>
             <input
-              className="w-full bg-transparent border border-[#cbc4d2] rounded-lg p-2.5 text-base focus:ring-2 focus:ring-[#4f378a] focus:border-[#4f378a] transition-all outline-none"
+              className="w-full bg-[#f8f2fa] border border-[#cbc4d2] text-[#1d1b20] font-semibold rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-[#4f378a] focus:border-[#4f378a] transition-all outline-none"
               type="date"
               value={checkIn}
               onChange={(e) => setCheckIn(e.target.value)}
@@ -61,11 +141,11 @@ export default function HeroSection() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-[#494551] flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-[18px]">calendar_month</span> Check-out
+            <label className="text-xs font-bold text-[#1d1b20] uppercase tracking-wider flex items-center gap-1.5">
+              <span className="material-symbols-outlined text-[18px] text-[#4f378a]">calendar_month</span> Check-out
             </label>
             <input
-              className="w-full bg-transparent border border-[#cbc4d2] rounded-lg p-2.5 text-base focus:ring-2 focus:ring-[#4f378a] focus:border-[#4f378a] transition-all outline-none"
+              className="w-full bg-[#f8f2fa] border border-[#cbc4d2] text-[#1d1b20] font-semibold rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-[#4f378a] focus:border-[#4f378a] transition-all outline-none"
               type="date"
               value={checkOut}
               onChange={(e) => setCheckOut(e.target.value)}
@@ -74,11 +154,11 @@ export default function HeroSection() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-[#494551] flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-[18px]">group</span> Guests
+            <label className="text-xs font-bold text-[#1d1b20] uppercase tracking-wider flex items-center gap-1.5">
+              <span className="material-symbols-outlined text-[18px] text-[#4f378a]">group</span> Guests
             </label>
             <select
-              className="w-full bg-transparent border border-[#cbc4d2] rounded-lg p-2.5 text-base focus:ring-2 focus:ring-[#4f378a] focus:border-[#4f378a] transition-all outline-none"
+              className="w-full bg-[#f8f2fa] border border-[#cbc4d2] text-[#1d1b20] font-semibold rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-[#4f378a] focus:border-[#4f378a] transition-all outline-none cursor-pointer"
               value={guests}
               onChange={(e) => setGuests(e.target.value)}
             >
@@ -91,9 +171,9 @@ export default function HeroSection() {
 
           <button
             type="submit"
-            className="bg-[#4f378a] text-white h-[46px] rounded-lg font-medium text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2 shadow-lg active:scale-95 cursor-pointer w-full"
+            className="bg-[#4f378a] text-white h-[44px] rounded-xl font-bold text-sm hover:bg-[#3d2a6c] transition-all flex items-center justify-center gap-2 shadow-lg active:scale-95 cursor-pointer w-full"
           >
-            <span className="material-symbols-outlined">search</span>
+            <span className="material-symbols-outlined text-xl">search</span>
             Search Availability
           </button>
         </form>

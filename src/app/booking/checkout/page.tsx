@@ -345,7 +345,7 @@ function CheckoutFormContent() {
               <img
                 className="w-full h-full object-cover"
                 alt="Grand Ocean Suite"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIdIDZeFVQWjrj1BUeYORTDhoHQwTOVefY_igatefZqVhZO4YgBNU6CeYds9-nfH_6AFPA-7YfE6fxnlauPLMfvZEndvminK04X6wE9JrQkJiWfIulHyIbxC19fsdBp85BoNYg7WSl1mYruSSVWp9TEgx5d1RdoPKN8LjJJAFxq0d5zZHfA3_B9leYbOw_zXAVCiCs-Mgf41cGMhXju7Qt8vlDFEhzOImpGUEcSvw5mAXacDRxAP9h4pou7Flh5ultpQA2t1lgBLkv"
+                src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=85"
               />
               <div className="absolute top-4 right-4">
                 <span className="bg-[#4f378a]/90 backdrop-blur-md text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full font-bold">

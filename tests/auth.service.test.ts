@@ -31,6 +31,7 @@ describe("Senior Engineer Edge-Case Verification - Authentication & Security", (
         name: "Duplicate User",
         email: testEmail,
         password: "OtherPassword",
+        role: "GUEST",
       })
     ).rejects.toThrow(ConflictError);
   });

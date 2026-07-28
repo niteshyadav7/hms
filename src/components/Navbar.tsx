@@ -67,7 +67,7 @@ export function Navbar() {
 
   return (
     <>
-      <header className="bg-[#fdf7ff]/80 dark:bg-[#1d1b20]/80 backdrop-blur-xl sticky top-0 w-full shadow-[0px_0.6rem_2.4rem_rgba(0,0,0,0.06)] z-50 border-b border-[#cbc4d2]/30">
+      <header className="bg-white/95 dark:bg-[#1d1b20]/95 backdrop-blur-2xl sticky top-0 w-full shadow-[0px_4px_24px_rgba(79,55,138,0.08)] z-50 border-b border-[#cbc4d2]/40">
         <nav className="relative flex justify-between items-center w-full px-6 md:px-12 py-3.5 max-w-[1280px] mx-auto">
           {/* Left: Circular Brand Logo + LR Text */}
           <Link
@@ -106,6 +106,13 @@ export function Navbar() {
               Amenities
             </a>
 
+            <Link
+              href="/events"
+              className={`text-sm py-1 no-underline transition-all duration-200 border-b-2 text-[#494551] font-medium border-transparent hover:text-[#4f378a] hover:border-[#4f378a]`}
+            >
+              Weddings & Events
+            </Link>
+
             {user?.role === "ADMIN" ? (
               <Link
                 href="/admin/dashboard"
@@ -115,7 +122,7 @@ export function Navbar() {
               </Link>
             ) : (
               <Link
-                href="/guest/dashboard"
+                href={user ? "/guest/dashboard" : "/login"}
                 className={`text-sm py-1 no-underline transition-all duration-200 border-b-2 ${
                   isGuestActive
                     ? "text-[#4f378a] font-bold border-[#4f378a]"

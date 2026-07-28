@@ -4,6 +4,12 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import RoomServiceModal from "@/components/RoomServiceModal";
+import DigitalKeyModal from "@/components/DigitalKeyModal";
+import SpaBookingModal from "@/components/SpaBookingModal";
+import ResortMapModal from "@/components/ResortMapModal";
+import GuestReviewModal from "@/components/GuestReviewModal";
+import LiveWeatherWidget from "@/components/LiveWeatherWidget";
 
 interface Booking {
   id: string;
@@ -23,6 +29,13 @@ export default function GuestPortalPage() {
   const [loading, setLoading] = useState(true);
   const [filterTab, setFilterTab] = useState<"ALL" | "UPCOMING" | "PAST">("ALL");
 
+  // Interactive Modals State
+  const [showRoomServiceModal, setShowRoomServiceModal] = useState(false);
+  const [showDigitalKeyModal, setShowDigitalKeyModal] = useState(false);
+  const [showSpaModal, setShowSpaModal] = useState(false);
+  const [showResortMapModal, setShowResortMapModal] = useState(false);
+  const [showReviewModal, setShowReviewModal] = useState(false);
+
   const loadGuestData = () => {
     setLoading(true);
     fetch("/api/auth/me")
@@ -32,78 +45,32 @@ export default function GuestPortalPage() {
           setUser(data.data.user);
           return fetch(`/api/bookings?userId=${data.data.user.id}`);
         } else {
-          // Fallback guest user
-          setUser({ name: "Alexander", email: "alexander@lumina-voyage.com" });
-          return fetch(`/api/bookings`);
+          // If not logged in, redirect to login page
+          router.push("/login");
+          return null;
         }
       })
       .then((res) => res?.json())
       .then((data) => {
-        if (data && data.success && Array.isArray(data.data) && data.data.length > 0) {
+        if (!data) return;
+        if (data.success && Array.isArray(data.data)) {
           const mapped = data.data.map((b: any) => ({
             id: b.id,
-            roomName: b.room?.type?.name || b.roomType || "Grand Ocean Suite",
+            roomName: b.room?.type?.name || b.roomType || "Luxury Suite",
             location: "Lumina Grand Resorts",
             dates: `${new Date(b.checkInDate || b.checkIn).toLocaleDateString("en-US", { month: "short", day: "numeric" })} – ${new Date(b.checkOutDate || b.checkOut).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}`,
-            nights: "4 Nights",
+            nights: `${Math.max(1, Math.ceil((new Date(b.checkOutDate || b.checkOut).getTime() - new Date(b.checkInDate || b.checkIn).getTime()) / (1000 * 60 * 60 * 24)))} Nights`,
             status: b.status || "CONFIRMED",
-            total: b.totalPrice || 3867.5,
+            total: b.totalPrice || 0,
             image:
-              "https://lh3.googleusercontent.com/aida-public/AB6AXuBdc8HaV_qfz6AU89B3J2xSVjyId7IaE1UG6EjqG8Z1Wv9cZ3wYWq4G56iLlvvDXuHIjrLdfhrpF_c0sVZlc4P5RB-VwqW2sW_iIUUBR5HPP59QeZ8KaQ6TGehJ23MN3_R5mK0VTRyjC38Ghgj9Yq8nDNvo5aZA9VjqRQ1hT8Oc9bOlStRg4v8eH242fGp-7WuNjKqbg8SpG_MEf6k2tQwIkqCoBAmYbjyGOTSXd8DfzOFMycwmxJxhRA_x9M89Y7v2j-YyKbRp5o3O",
+              b.room?.image ||
+              "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=85",
           }));
           setBookings(mapped);
-        } else {
-          // Fallback dataset matching code.html
-          setBookings([
-            {
-              id: "b1",
-              roomName: "Grand Ocean Suite",
-              location: "Lumina Grand Maldives",
-              dates: "Oct 12 – Oct 18, 2024",
-              nights: "6 Nights",
-              status: "CONFIRMED",
-              total: 4200.0,
-              image:
-                "https://lh3.googleusercontent.com/aida-public/AB6AXuBdc8HaV_qfz6AU89B3J2xSVjyId7IaE1UG6EjqG8Z1Wv9cZ3wYWq4G56iLlvvDXuHIjrLdfhrpF_c0sVZlc4P5RB-VwqW2sW_iIUUBR5HPP59QeZ8KaQ6TGehJ23MN3_R5mK0VTRyjC38Ghgj9Yq8nDNvo5aZA9VjqRQ1hT8Oc9bOlStRg4v8eH242fGp-7WuNjKqbg8SpG_MEf6k2tQwIkqCoBAmYbjyGOTSXd8DfzOFMycwmxJxhRA_x9M89Y7v2j-YyKbRp5o3O",
-            },
-            {
-              id: "b2",
-              roomName: "Skyline Penthouse",
-              location: "Lumina Grand Tokyo",
-              dates: "Sep 01 – Sep 04, 2024",
-              nights: "3 Nights",
-              status: "CHECKED_IN",
-              total: 2850.0,
-              image:
-                "https://lh3.googleusercontent.com/aida-public/AB6AXuBtCigwvBMLnaJBOdi68T4bZjKfvpmov9OLcPCLOXKS3nFT0jPJYPga3URVUvjjWt03VvIKPdgtJI3gT3AoZfEtAcdNq6fymH5lc0wpiTL_hK-FFVJpJm9vCoVoBuVFeaACwWNevZ9rUWdj8Rz2fxPJJZ8jL4ETbqKJcuvOYCt86-31mFic-sy5-Y2V4r_3gRWQJtFt99ynMz5__ZcaKxI8BNr1KFezL79W2AEx4TpjuVPpst3XYGDG6BTlDnEQecw73iNf6z1mKvH8",
-            },
-            {
-              id: "b3",
-              roomName: "Alpine Lodge",
-              location: "Lumina Grand Alps",
-              dates: "Feb 14 – Feb 21, 2024",
-              nights: "7 Nights",
-              status: "CHECKED_OUT",
-              total: 5100.0,
-              image:
-                "https://lh3.googleusercontent.com/aida-public/AB6AXuCMapuvUkNSqX9NmXFjFmj0Ag9y8VrT0PEORjoEsYa-9IzwsE_RqewtBYuCC6wIQF9HeD6E0qB5XuCZBf2y_uOwy5lGG3nZWn-sBAs_FqPM8juQdouDL5mCXxgVq47m5ZtuKpjwUSKQ1LXFuNNw3bptim0fsNPCDw19BYuSdUMxuUpBxEHXGr137EFEYu2ZGt4Q8HveQ-YHOWbTeY6C66QiBT5cfPRQbxWmNS3RLXjJSs3LRTULfOuXdF7vnzr1yalROxLaxyWKo-xN",
-            },
-            {
-              id: "b4",
-              roomName: "Desert Oasis Villa",
-              location: "Lumina Grand Marrakesh",
-              dates: "Jan 10 – Jan 12, 2024",
-              nights: "2 Nights",
-              status: "CANCELLED",
-              total: 1200.0,
-              image:
-                "https://lh3.googleusercontent.com/aida-public/AB6AXuC70i1pdAx___9Y_K5Z5uuxVRYH22RrOPu_YanDejkl9fSeusA44OIalQWKSxN30Wy5wl4tcOsqP6VUd6Yq3y9udQqyUVaUXsf077TS2hk_T_hZsTx-TRzcwAF0a9m7_EgNiMpskRIv8lPE7LsvfH7Bt1KE6a9PjB6h-GeOy5_eWfL-wG0TZFY7lpOpfjNYMT0SmId1LjFzV0KXBpNsvFeORb7rgX4uf7Q1-e3JbTNrN_mGagONrxQXKPE8Me7Z_9184bvszWsF96Or",
-            },
-          ]);
         }
       })
-      .catch(() => {
-        setUser({ name: "Alexander", email: "alexander@lumina-voyage.com" });
+      .catch((err) => {
+        console.error("Guest dashboard error:", err);
       })
       .finally(() => setLoading(false));
   };
@@ -138,6 +105,13 @@ export default function GuestPortalPage() {
     return true;
   });
 
+  const upcomingStay = bookings.find((b) => b.status === "CONFIRMED" || b.status === "CHECKED_IN");
+  const points = user?.points ?? (bookings.length * 500);
+
+  if (loading || !user) {
+    return null;
+  }
+
   return (
     <main className="max-w-[1280px] mx-auto px-4 md:px-12 py-10 text-[#1d1b20]">
       {/* Dashboard Header */}
@@ -147,7 +121,7 @@ export default function GuestPortalPage() {
             Member Overview
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-[#1d1b20]">
-            Welcome back, {user?.name || "Alexander"}
+            Welcome back, {user?.name || "Guest"}
           </h1>
           <p className="text-[#494551] text-sm mt-1">
             Manage your upcoming stays and relive past memories at Lumina Grand.
@@ -156,15 +130,26 @@ export default function GuestPortalPage() {
 
         {/* 2 Floating KPI Cards */}
         <div className="flex gap-4">
-          <div className="glass-panel aura-shadow rounded-xl p-4 flex flex-col min-w-[160px] bg-white/70 backdrop-blur-xl border border-white/50">
-            <span className="text-xs text-[#494551] font-medium">Lumina Points</span>
-            <span className="text-2xl font-bold text-[#4f378a] mt-1">24,500</span>
-          </div>
+          <Link
+            href="/guest/rewards"
+            className="glass-panel aura-shadow rounded-xl p-4 flex flex-col min-w-[160px] bg-white/70 backdrop-blur-xl border border-white/50 no-underline hover:border-[#4f378a]/40 transition-all group"
+          >
+            <span className="text-xs text-[#494551] font-medium group-hover:text-[#4f378a]">Lumina Points ➔</span>
+            <span className="text-2xl font-bold text-[#4f378a] mt-1">{points.toLocaleString()}</span>
+          </Link>
+
           <div className="glass-panel aura-shadow rounded-xl p-4 flex flex-col min-w-[160px] bg-white/70 backdrop-blur-xl border border-white/50">
             <span className="text-xs text-[#494551] font-medium">Next Stay</span>
-            <span className="text-2xl font-bold text-[#4f378a] mt-1">In 12 Days</span>
+            <span className="text-sm font-bold text-[#1d1b20] mt-1 line-clamp-1">
+              {upcomingStay ? upcomingStay.roomName : "No Active Stay"}
+            </span>
           </div>
         </div>
+      </div>
+
+      {/* Live Island Weather & Tides Bar */}
+      <div className="mb-10">
+        <LiveWeatherWidget />
       </div>
 
       {/* Grid Container */}
@@ -219,7 +204,20 @@ export default function GuestPortalPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#cbc4d2]/10 text-sm">
-                {filteredBookings.map((b) => (
+                {filteredBookings.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="px-6 py-12 text-center text-gray-500">
+                      <p className="text-sm font-medium">No bookings found for your account yet.</p>
+                      <Link
+                        href="/rooms"
+                        className="mt-3 inline-block bg-[#4f378a] text-white px-5 py-2 rounded-lg text-xs font-semibold hover:bg-[#3d2a6c] transition-all no-underline"
+                      >
+                        Explore Rooms & Book Now
+                      </Link>
+                    </td>
+                  </tr>
+                ) : (
+                  filteredBookings.map((b) => (
                   <tr
                     key={b.id}
                     className="hover:bg-white/40 transition-transform duration-300 hover:translate-x-1"
@@ -278,19 +276,27 @@ export default function GuestPortalPage() {
                       )}
                       {b.status === "CHECKED_IN" && (
                         <button
-                          onClick={() => toast.success("Digital Key Activated: Unlocked Suite 402")}
+                          onClick={() => setShowDigitalKeyModal(true)}
                           className="text-[#4f378a] font-semibold text-xs border border-[#4f378a]/30 px-3.5 py-1.5 rounded-lg hover:bg-[#4f378a]/5 transition-all cursor-pointer bg-transparent"
                         >
-                          View Key
+                          View Key & Controls
                         </button>
                       )}
                       {b.status === "CHECKED_OUT" && (
-                        <Link
-                          href="/rooms"
-                          className="bg-[#4f378a] text-white px-4 py-1.5 rounded-lg text-xs font-semibold hover:bg-[#3d2a6c] transition-all no-underline inline-block"
-                        >
-                          Book Again
-                        </Link>
+                        <div className="flex items-center justify-end gap-2">
+                          <button
+                            onClick={() => setShowReviewModal(true)}
+                            className="text-[#4f378a] font-semibold text-xs border border-[#4f378a]/30 px-3 py-1.5 rounded-lg hover:bg-[#4f378a]/5 transition-all cursor-pointer bg-transparent"
+                          >
+                            Review Stay
+                          </button>
+                          <Link
+                            href="/rooms"
+                            className="bg-[#4f378a] text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold hover:bg-[#3d2a6c] transition-all no-underline inline-block"
+                          >
+                            Book Again
+                          </Link>
+                        </div>
                       )}
                       {b.status === "CANCELLED" && (
                         <button
@@ -302,7 +308,8 @@ export default function GuestPortalPage() {
                       )}
                     </td>
                   </tr>
-                ))}
+                ))
+              )}
               </tbody>
             </table>
           </div>
@@ -324,7 +331,7 @@ export default function GuestPortalPage() {
               className="w-full h-full bg-cover bg-center transition-transform duration-700 hover:scale-105"
               style={{
                 backgroundImage:
-                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDuNAQLF4gxdtXbSsUwDKshUumfnsh_2BfJat6E4uf8hwrnmFoqh2W16GItW2dtwS7Ji5k4sojlhZ3tQxZCKo6uy5VmuxOOiCJ_4QRfLyue38ZNXZBJBwy5vVsFKf5tL74gPGMK8X0N8hl1OncJEXdGFufjZ1SnicGAUNl_Roz0XgJHg-ilLM5_3CE7tvumOu0cOA4Iz9slT5TMyYEG1EE5uf1N8zzGaEAt8Nq_buEVkb_Bg9Xcm6T-T90k67t1fWg5jg1c_dlpTSBx')",
+                  "url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=85')",
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#4f378a]/90 via-[#4f378a]/30 to-transparent" />
@@ -350,36 +357,49 @@ export default function GuestPortalPage() {
 
         {/* Quick Support Sidebar */}
         <div className="md:col-span-4 glass-panel aura-shadow rounded-2xl p-6 flex flex-col gap-4 bg-white/70 backdrop-blur-xl border border-white/60">
-          <h3 className="text-lg font-bold text-[#1d1b20]">Guest Support</h3>
+          <h3 className="text-lg font-bold text-[#1d1b20]">Guest Support & Amenities</h3>
           <div className="flex flex-col gap-3">
             <button
-              onClick={() => alert("Connecting to 24/7 Live Concierge...")}
+              onClick={() => setShowResortMapModal(true)}
               className="flex items-center gap-4 p-3.5 rounded-xl bg-[#ece6ee]/50 hover:bg-[#e9ddff] transition-all text-left border-none cursor-pointer group"
             >
               <span className="material-symbols-outlined p-2 bg-white rounded-full text-[#4f378a] shadow-sm group-hover:bg-[#e9ddff]">
-                chat
+                map
               </span>
               <div>
-                <span className="block font-bold text-xs text-[#1d1b20]">Live Concierge</span>
-                <span className="text-[11px] text-gray-500">Average response: 2 mins</span>
+                <span className="block font-bold text-xs text-[#1d1b20]">Interactive Island Map</span>
+                <span className="text-[11px] text-gray-500">Explore overwater bungalows & spots</span>
               </div>
             </button>
 
             <button
-              onClick={() => alert("Opening Room Service Menu...")}
+              onClick={() => setShowDigitalKeyModal(true)}
+              className="flex items-center gap-4 p-3.5 rounded-xl bg-[#ece6ee]/50 hover:bg-[#e9ddff] transition-all text-left border-none cursor-pointer group"
+            >
+              <span className="material-symbols-outlined p-2 bg-white rounded-full text-[#4f378a] shadow-sm group-hover:bg-[#e9ddff]">
+                key
+              </span>
+              <div>
+                <span className="block font-bold text-xs text-[#1d1b20]">Digital Suite Key</span>
+                <span className="text-[11px] text-gray-500">NFC door & room lighting/temp</span>
+              </div>
+            </button>
+
+            <button
+              onClick={() => setShowRoomServiceModal(true)}
               className="flex items-center gap-4 p-3.5 rounded-xl bg-[#ece6ee]/50 hover:bg-[#e9ddff] transition-all text-left border-none cursor-pointer group"
             >
               <span className="material-symbols-outlined p-2 bg-white rounded-full text-[#4f378a] shadow-sm group-hover:bg-[#e9ddff]">
                 restaurant
               </span>
               <div>
-                <span className="block font-bold text-xs text-[#1d1b20]">Room Service</span>
-                <span className="text-[11px] text-gray-500">Order for upcoming stays</span>
+                <span className="block font-bold text-xs text-[#1d1b20]">In-Room Gourmet Dining</span>
+                <span className="text-[11px] text-gray-500">Order breakfast, steak & cocktails</span>
               </div>
             </button>
 
             <button
-              onClick={() => alert("Opening Wellness & Spa Treatment Calendar...")}
+              onClick={() => setShowSpaModal(true)}
               className="flex items-center gap-4 p-3.5 rounded-xl bg-[#ece6ee]/50 hover:bg-[#e9ddff] transition-all text-left border-none cursor-pointer group"
             >
               <span className="material-symbols-outlined p-2 bg-white rounded-full text-[#4f378a] shadow-sm group-hover:bg-[#e9ddff]">
@@ -387,7 +407,7 @@ export default function GuestPortalPage() {
               </span>
               <div>
                 <span className="block font-bold text-xs text-[#1d1b20]">Wellness & Spa</span>
-                <span className="text-[11px] text-gray-500">Book treatments</span>
+                <span className="text-[11px] text-gray-500">Reserve massage & hydrotherapy</span>
               </div>
             </button>
           </div>
@@ -399,6 +419,28 @@ export default function GuestPortalPage() {
           </div>
         </div>
       </div>
+
+      {/* Render Modals */}
+      <RoomServiceModal
+        isOpen={showRoomServiceModal}
+        onClose={() => setShowRoomServiceModal(false)}
+      />
+      <DigitalKeyModal
+        isOpen={showDigitalKeyModal}
+        onClose={() => setShowDigitalKeyModal(false)}
+      />
+      <SpaBookingModal
+        isOpen={showSpaModal}
+        onClose={() => setShowSpaModal(false)}
+      />
+      <ResortMapModal
+        isOpen={showResortMapModal}
+        onClose={() => setShowResortMapModal(false)}
+      />
+      <GuestReviewModal
+        isOpen={showReviewModal}
+        onClose={() => setShowReviewModal(false)}
+      />
     </main>
   );
 }

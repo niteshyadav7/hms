@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import ReduxProvider from "@/components/ReduxProvider";
 import ToastProvider from "@/components/ToastProvider";
+import ConciergeChatWidget from "@/components/ConciergeChatWidget";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -37,6 +38,7 @@ export default function RootLayout({
           <main style={{ width: "100%", minHeight: "calc(100vh - 70px)", padding: 0, margin: 0 }}>
             {children}
           </main>
+          <ConciergeChatWidget />
         </ReduxProvider>
       </body>
     </html>

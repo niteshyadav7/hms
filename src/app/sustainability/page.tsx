@@ -44,7 +44,7 @@ export default function SustainabilityPage() {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://lh3.googleusercontent.com/aida-public/AB6AXuALrcEBfi2BzNNiBNwufkLe3HQZg02U_BMd1pWZRUDHhaXr4pJaT9cDWs8ggpgvKRzUXGSGczwR4_UPxdu9jCq1okbErq_Y7RwIH333HKCuk_ysp2YdpouycztN_tMzoPSn5FQHBqBtEonEiriMxj52PdpPXHvCXyxBuje4QpJPORpQRu9eUrhAf1lI2tzylFwSisZ2r9-D8nYlOpzHgu9Kob3WyvlshEvL4OgQLhgY5FXEUVvAShLIX9K0s8mVkSG78RhTTKR58BrT')",
+              "url('https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1600&q=85')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />

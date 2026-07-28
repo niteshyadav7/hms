@@ -47,7 +47,7 @@ async function main() {
       basePrice: 150.0,
       capacity: 2,
       amenities: JSON.stringify(["WiFi", "AC", "TV", "King Bed", "Balcony", "Mini Bar"]),
-      images: JSON.stringify(["https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600"]),
+      images: JSON.stringify(["https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1600&q=85"]),
     },
   });
 
@@ -60,7 +60,7 @@ async function main() {
       basePrice: 90.0,
       capacity: 2,
       amenities: JSON.stringify(["WiFi", "AC", "TV", "Queen Bed"]),
-      images: JSON.stringify(["https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600"]),
+      images: JSON.stringify(["https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=85"]),
     },
   });
 
@@ -73,7 +73,7 @@ async function main() {
       basePrice: 240.0,
       capacity: 4,
       amenities: JSON.stringify(["WiFi", "AC", "2 TVs", "2 King Beds", "Kitchenette", "Jacuzzi"]),
-      images: JSON.stringify(["https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600"]),
+      images: JSON.stringify(["https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=85"]),
     },
   });
 

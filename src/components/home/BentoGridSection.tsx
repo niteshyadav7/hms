@@ -22,7 +22,7 @@ export default function BentoGridSection() {
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
               style={{
                 backgroundImage:
-                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDBa2VWT10YNJCX1T7mKDdm4IFyhK_I38RmfmQ7QwtEotrAQIC_pnjEKm57XR5Ca9oRVkX0nKwjcczwb0P8al_QRsKiFdomHAqUJAl2xzmVhfoaue2VHHBE9o1Ug1vfTkR8qX7nV6dqgwii8Ff0VMdjjIpdSF6VF7zfwYUqkUE_zUWHjofRfRF3MTfa-WaaI7jchZ6yfjm_5Ny8W7v1iG6Ox42F_3YVO-5WSpecO5uZCXCmyz46rb6u7oerbRzZpG0jQGbhln8ttJkn')",
+                  "url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=85')",
               }}
             />
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
@@ -40,7 +40,7 @@ export default function BentoGridSection() {
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
               style={{
                 backgroundImage:
-                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAgD7ggGODDttmY3LDrKQpQ6sImNY9pPRdLI0dXWBcw6MfoQLpJxoGPvZZ2Eo1f1X7GZCIc624mQjzxzER8Isplsq0fIn2QEomC2rZtCAzw00g0GqiV2Akj8_RHl0m8oG4TN1pwbbuS_gGEDZeLV-7mZfI5SRR_x247EYQFC4rbvrhMuSgmD9cAB0QYUtMt5PEP8FPgs8g3qfpQOKlN92VfxY3QB54dnO6fXCySNAUAKsVRkOq_VyxgKWX7nOmoIoV2vlCDDZyfaUot')",
+                  "url('https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=85')",
               }}
             />
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
@@ -58,7 +58,7 @@ export default function BentoGridSection() {
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
               style={{
                 backgroundImage:
-                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuALBp92ABzwh04IdHgwj2cl3Z-uEyMeiwe_Nira1S6EQMnI5woXQ2RymhSjNI7njfWWniK_588iUYXboLcNnGmQhn7W94plpEcyhdYij1NTVCcmVCbEe617964KRwOTixD1e87xwoyrXLJ89nlq_YOISM1GubHjtw10DZOV68CscobB6jt6WoUVm3LHUp6Nl6AlLh0ZOBa4X9bWQgArvMmMiQaH-QjmALGyII9oaat3vUfGZ_HPRUZPO9oW1TxL2y_frg7JuNIDaHPZ')",
+                  "url('https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1200&q=85')",
               }}
             />
             <div className="absolute inset-0 bg-black/10" />
@@ -73,7 +73,7 @@ export default function BentoGridSection() {
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
               style={{
                 backgroundImage:
-                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuABeTdeEmjbHPH_i7Qz60XBDbzU4LdYWfo1tmBPXO7blZiTjxqQdQiRH4euwWkWPna-WGeRy1ZKewdIT0UpGVH91chsB3OQKNYm-miLqboyv6xmP2i-a5wVkPJzIFaWNYlIC94pKFheFMiCLTxbhhouvOl-dBGax8kzcCtTD9_ORxwUIDmA8CQCUnt0aHeFJlRpQTzt28CB2EvGUVFcWb_uCgnhFLW8hqiKtrg5q9ESF_2FYJnVtOrBsAUmHIsWnEguu9gnD6DwvJPJ')",
+                  "url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=85')",
               }}
             />
             <div className="absolute inset-0 bg-black/10" />

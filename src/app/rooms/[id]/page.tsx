@@ -3,6 +3,7 @@
 import React, { useEffect, useState, use } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import VirtualTourModal from "@/components/VirtualTourModal";
 
 interface Room {
   id: string;
@@ -29,6 +30,7 @@ export default function RoomDetailsPage({
 
   const [room, setRoom] = useState<Room | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showVirtualTourModal, setShowVirtualTourModal] = useState(false);
 
   const [checkIn, setCheckIn] = useState("2024-10-24");
   const [checkOut, setCheckOut] = useState("2024-10-28");
@@ -62,9 +64,9 @@ export default function RoomDetailsPage({
                   "24/7 Butler Service",
                 ],
                 images: [
-                  "https://lh3.googleusercontent.com/aida-public/AB6AXuDqhGI9v2yELLXUQurYj2i4EB9JgTHueGwouo8ApPeZstQD9KXV7SfeFEL_sysM1YfEllCYdd15V_7QYzRL7MERk-CgPWhRQMF8-Q-szP5oFbL3cRq16RYg_7aCYeWmCZlp-4feGHFxfierVbZSgAiJQEVxcJ0LOgEoWqsr6hY_lrcA3_d5YSCLtc298Ip9YVvsRAG6IlCxWvTAvF-NGmror911ohUcN6NAwVxXZdVGysws74vwFZ7F_T1ZMPWWVryjAQen-6MLPTsE",
-                  "https://lh3.googleusercontent.com/aida-public/AB6AXuCeKXZ1dFnETCWUmerb7odBTjQzRat5GdfgJwX7cVSc3nczJpivhhG7rL88QDwV-D37dWjnfviSKVJVmm8WWO-jYgr9gi67rNGkBrjxE9ImUCw6vjFueYO7ednNLIvFKqUxjevKIf1fnor8hOdV08vCsYN1GIKjDs2E43-hr2tslfmhR3zH9kmA_5EsAwBO8CkC1idlsI4Fa60WDXJ3Ws3aGtN0QpQuidnT7umdRcaN0Z__oFvA5-B2nZJFB8CVfAkNoE6J0-ujmaIK",
-                  "https://lh3.googleusercontent.com/aida-public/AB6AXuDpvUFHmF_VlJCEqqQFDo4noIIb94FaUMcOfzqOOvg2sVlATrfBEUyhhKiftCG-MgyLgBk6efp2BqPGYVDyXyyTGyE-TUo7T8uEIbCBYUoYFXo9oVOPfbQQh0Jrzf5IXGVpRo9RL04DIPluZv5xWToc2KLE19cnLOF89COhC5O5j8eijea3De8z9cgBjdEjI0o_efGsSUd_jZlAGgkkQlCLe0OLYmIRYwBqnhj5toMbTIDKkpVhJ2FKq6TTadtlUEf0dTVvUTg1Lsqf",
+                  "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=85",
+                  "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=85",
+                  "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=85",
                 ],
               },
             });
@@ -168,7 +170,14 @@ export default function RoomDetailsPage({
                   "https://lh3.googleusercontent.com/aida-public/AB6AXuDqhGI9v2yELLXUQurYj2i4EB9JgTHueGwouo8ApPeZstQD9KXV7SfeFEL_sysM1YfEllCYdd15V_7QYzRL7MERk-CgPWhRQMF8-Q-szP5oFbL3cRq16RYg_7aCYeWmCZlp-4feGHFxfierVbZSgAiJQEVxcJ0LOgEoWqsr6hY_lrcA3_d5YSCLtc298Ip9YVvsRAG6IlCxWvTAvF-NGmror911ohUcN6NAwVxXZdVGysws74vwFZ7F_T1ZMPWWVryjAQen-6MLPTsE"
                 }
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
+              <button
+                onClick={() => setShowVirtualTourModal(true)}
+                className="absolute bottom-4 left-4 z-20 bg-white/90 hover:bg-white text-[#4f378a] px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-lg cursor-pointer border-none flex items-center gap-2 backdrop-blur-md active:scale-95"
+              >
+                <span className="material-symbols-outlined text-base">360</span>
+                <span>Launch 360° Virtual Tour</span>
+              </button>
             </div>
             <div className="col-span-1 row-span-1 relative group overflow-hidden rounded-xl aura-shadow border border-[#cbc4d2]/30">
               <img
@@ -396,6 +405,12 @@ export default function RoomDetailsPage({
           </div>
         </aside>
       </div>
+
+      <VirtualTourModal
+        isOpen={showVirtualTourModal}
+        onClose={() => setShowVirtualTourModal(false)}
+        roomTitle={room.roomType.name}
+      />
     </main>
   );
 }

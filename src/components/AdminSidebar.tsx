@@ -17,6 +17,7 @@ export default function AdminSidebar() {
     { href: "/admin/dashboard", label: "Overview", icon: "dashboard" },
     { href: "/admin/bookings", label: "Bookings", icon: "calendar_month" },
     { href: "/admin/rooms", label: "Rooms", icon: "bed" },
+    { href: "/admin/housekeeping", label: "Housekeeping", icon: "cleaning_services" },
     { href: "/admin/guests", label: "Guests", icon: "group" },
     { href: "/admin/dashboard#financials", label: "Financials", icon: "payments" },
   ];

@@ -1,9 +1,37 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { SearchWidget } from "../molecules/SearchWidget";
 
+const HERO_SLIDES = [
+  {
+    url: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=2000&q=85",
+    title: "Overwater Sanctuary",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2000&q=85",
+    title: "Twilight Infinity Vista",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=2000&q=85",
+    title: "Golden Oceanfront Oasis",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=2000&q=85",
+    title: "Panoramic Glass Villa",
+  },
+];
+
 export const HeroSection: React.FC = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 9000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section
       style={{
@@ -18,28 +46,55 @@ export const HeroSection: React.FC = () => {
         overflow: "hidden",
       }}
     >
-      {/* Hero Background Image */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCC9Fw2uDb5cELlAcXsTRK9KDP8JlUt_7Qhgp9MsJjeRBYp7Cor7Ct6miOpc06Cap_rqSiPx_EbEbmLakv8THJoVn_W_lybRCu7WcXjSh573LJH2ueq2T2sEkmR2_tuxg-P-WbATOxECic-g3mN3V89fKRUAw3Asx5YZCLCl2AO3rSMKEhGxXYGQtC2A4OPNTgTzY27lGW9dE1xxLeiIr-8PviWVQqq-5GFROpBnAYpPJEboM2l492YBfNu61sSqfJ-L6sPprA3dzN5')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          zIndex: 0,
-        }}
-      />
+      {/* Hero Background Carousel Images */}
+      <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+        {HERO_SLIDES.map((slide, index) => (
+          <div
+            key={index}
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url('${slide.url}')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: index === currentSlide ? 1 : 0,
+              transform: index === currentSlide ? "scale(1)" : "scale(1.05)",
+              transition: "all 2000ms ease-in-out",
+            }}
+          />
+        ))}
+        <div style={{ position: "absolute", inset: 0, background: "rgba(0, 0, 0, 0.25)", zIndex: 1 }} />
+      </div>
 
-      {/* Dark Overlay */}
+      {/* Slide Indicators (Dots) */}
       <div
         style={{
           position: "absolute",
-          inset: 0,
-          backgroundColor: "rgba(0, 0, 0, 0.2)",
-          zIndex: 1,
+          bottom: "2rem",
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 20,
+          display: "flex",
+          gap: "0.75rem",
         }}
-      />
+      >
+        {HERO_SLIDES.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            style={{
+              height: "10px",
+              width: index === currentSlide ? "32px" : "10px",
+              borderRadius: "9999px",
+              backgroundColor: index === currentSlide ? "#ffffff" : "rgba(255, 255, 255, 0.4)",
+              border: "none",
+              cursor: "pointer",
+              transition: "all 300ms ease",
+            }}
+            title={`Slide ${index + 1}`}
+          />
+        ))}
+      </div>
 
       {/* Hero Content Container */}
       <div

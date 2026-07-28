@@ -62,7 +62,7 @@ function RoomCatalogContent() {
                 capacity: 2,
                 amenities: ["850 sq ft", "King Size", "Ocean View"],
                 images: [
-                  "https://lh3.googleusercontent.com/aida-public/AB6AXuDhr6BJeRC7ITsv_IM3sVE_yr0qpoDtSUdS5sROsKNE8j5a_vBhpZXnZwb5r13V0tEoZaKoWds5OtMPjoCpIlwrwvVxG6MjhwxjqzxWYqERXW4qwSFMucJTP8AhOSvKwDqGX6_VRyV8mLUfH-Hw2Dk5mTQS3dJ7KIA2AdrGbg6D6IgJmvopOGWaTapn48X8MoMNhPTjB0QwDO1EvjMo-hCE84P8SAaB9z6uSur_Dit3InqxivuquzUc2tHnyeomUy0cEYXNYyKzTRYn",
+                  "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=85",
                 ],
               },
             },
@@ -79,7 +79,7 @@ function RoomCatalogContent() {
                 capacity: 4,
                 amenities: ["1,200 sq ft", "Private Balcony"],
                 images: [
-                  "https://lh3.googleusercontent.com/aida-public/AB6AXuD-VYPIOsJiWHmR6VA0-PjVWcnmI47RdPxr1U1p9KjovmZDiLdGqddu4BJUONwt1Opz_r9RnZRYhe-egaU8Wq6T8zCMpgrk37Asg_1_mwBJUOjmV_zVp2VV-i_BzRnYHQTInNNu6uUCVjHMwrr6K0pBVxCzneBhFznKGXsUoN5H7HlWmdDW-PRTGPUSJFDdp5Buvreu9cRoBxZ0EZ5OwL9ajsLtovVWCYxWlm7OZvL_L2QDOdF8RkR60q18BVxR7dX7dERC0i8QLIhi",
+                  "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=85",
                 ],
               },
             },
@@ -96,7 +96,7 @@ function RoomCatalogContent() {
                 capacity: 4,
                 amenities: ["Private Pool", "Tropical Garden"],
                 images: [
-                  "https://lh3.googleusercontent.com/aida-public/AB6AXuABXH93pDk6s7OkPfELx0_IDnhXmfvtqdg3cD8gRE7_p9kQsoh9iJOTBHWHVqOriL8I278nWAA8A5WlAaKZ8iGoTzrqIDFZdYT_xlQWOUPRUnfAla4hqI8qASHJJxhHhG4cK5IOspSB4x1OfA34oIWUGJZTPRL0Oa6psCiThSApkbBDZlzkl7o9M1qXs0pav-r5owGZ3ASgiUPmffolk6cN-O8q8W-hh3JTUgob0Vxx0oMwnCyRINDkVb_hrq2SAfPH8R2XNc6Phxh5",
+                  "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=85",
                 ],
               },
             },
@@ -113,7 +113,7 @@ function RoomCatalogContent() {
                 capacity: 2,
                 amenities: ["Workspace", "Hi-Speed WiFi"],
                 images: [
-                  "https://lh3.googleusercontent.com/aida-public/AB6AXuDvzTRRj4vQuti4Z104xBOwf0ASwK6pQkhCydlJOBfQb1rA1fkmSfc82hG4Pk_XtEkXaKug-R5qFUP6Mj3sw5WEiRiMP28b7yT61GUGzLugssJ5zn6cWI11TlQdVQ0ObQEx1XJ9xHlhi2zcuD4YAmUTp73sNVzWNCFtUynFpzES0JCwegld2BQGq8QQwdg4KNYrmmFy2fhLCkwKezIpPXfhXvignh_XjbDPkdXyS0pxT_pzMdX4Xmp18lQ2PiulB8I6YO-CB4dservf",
+                  "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1600&q=85",
                 ],
               },
             },
@@ -135,7 +135,7 @@ function RoomCatalogContent() {
               capacity: 2,
               amenities: ["850 sq ft", "King Size"],
               images: [
-                "https://lh3.googleusercontent.com/aida-public/AB6AXuDhr6BJeRC7ITsv_IM3sVE_yr0qpoDtSUdS5sROsKNE8j5a_vBhpZXnZwb5r13V0tEoZaKoWds5OtMPjoCpIlwrwvVxG6MjhwxjqzxWYqERXW4qwSFMucJTP8AhOSvKwDqGX6_VRyV8mLUfH-Hw2Dk5mTQS3dJ7KIA2AdrGbg6D6IgJmvopOGWaTapn48X8MoMNhPTjB0QwDO1EvjMo-hCE84P8SAaB9z6uSur_Dit3InqxivuquzUc2tHnyeomUy0cEYXNYyKzTRYn",
+                "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=85",
               ],
             },
           },
@@ -171,7 +171,7 @@ function RoomCatalogContent() {
           className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 hover:scale-105"
           style={{
             backgroundImage:
-              "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCC9Fw2uDb5cELlAcXsTRK9KDP8JlUt_7Qhgp9MsJjeRBYp7Cor7Ct6miOpc06Cap_rqSiPx_EbEbmLakv8THJoVn_W_lybRCu7WcXjSh573LJH2ueq2T2sEkmR2_tuxg-P-WbATOxECic-g3mN3V89fKRUAw3Asx5YZCLCl2AO3rSMKEhGxXYGQtC2A4OPNTgTzY27lGW9dE1xxLeiIr-8PviWVQqq-5GFROpBnAYpPJEboM2l492YBfNu61sSqfJ-L6sPprA3dzN5')",
+              "url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=2000&q=85')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
