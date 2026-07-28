@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AdminSidebar from "@/components/AdminSidebar";
+import LiveDispatchMatrix from "@/components/LiveDispatchMatrix";
 import { toast } from "react-hot-toast";
 
 interface KPIs {
@@ -213,6 +214,9 @@ export default function AdminDashboardPage() {
             </div>
           </div>
         </header>
+
+        {/* 🟢 Live SSE Broadcaster & Event Stream Matrix */}
+        <LiveDispatchMatrix />
 
         {/* 📊 Lumina AI RAG Analytics & Supabase pgvector Control Center */}
         <section className="bg-gradient-to-r from-[#4f378a] to-[#3d2a6c] text-white p-6 rounded-2xl shadow-xl space-y-6">

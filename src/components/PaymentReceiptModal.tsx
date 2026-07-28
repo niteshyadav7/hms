@@ -118,21 +118,33 @@ export function PaymentReceiptModal({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex gap-3 pt-2">
-          <button
-            onClick={handlePrint}
-            className="flex-1 bg-[#f8f2fa] dark:bg-[#252029] hover:bg-[#e6e0e9] text-[#1d1b20] dark:text-white py-3 rounded-xl text-xs font-bold transition-all border-none cursor-pointer flex items-center justify-center gap-1.5"
+        <div className="space-y-2 pt-2">
+          <a
+            href={`/api/bookings/${bookingNumber}/invoice`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full bg-[#4f378a] hover:bg-[#3d2a6c] text-white py-3 rounded-xl text-xs font-bold transition-all border-none cursor-pointer shadow-md flex items-center justify-center gap-1.5 no-underline"
           >
-            <span className="material-symbols-outlined text-sm">print</span>
-            <span>Print Receipt</span>
-          </button>
+            <span className="material-symbols-outlined text-sm">download</span>
+            <span>Download Official PDF Tax Invoice 📄</span>
+          </a>
 
-          <button
-            onClick={onClose}
-            className="flex-1 bg-[#4f378a] hover:bg-[#3d2a6c] text-white py-3 rounded-xl text-xs font-bold transition-all border-none cursor-pointer shadow-md"
-          >
-            Done & View Dashboard ➔
-          </button>
+          <div className="flex gap-3">
+            <button
+              onClick={handlePrint}
+              className="flex-1 bg-[#f8f2fa] dark:bg-[#252029] hover:bg-[#e6e0e9] text-[#1d1b20] dark:text-white py-2.5 rounded-xl text-xs font-bold transition-all border-none cursor-pointer flex items-center justify-center gap-1.5"
+            >
+              <span className="material-symbols-outlined text-sm">print</span>
+              <span>Quick Print</span>
+            </button>
+
+            <button
+              onClick={onClose}
+              className="flex-1 bg-gray-200 dark:bg-white/10 hover:bg-gray-300 text-[#1d1b20] dark:text-white py-2.5 rounded-xl text-xs font-bold transition-all border-none cursor-pointer"
+            >
+              Done & Dashboard ➔
+            </button>
+          </div>
         </div>
       </div>
     </div>

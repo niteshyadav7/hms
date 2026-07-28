@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import { prisma } from "@/lib/db";
+import { dispatchBus } from "@/lib/events/dispatch-bus";
 
 // In-memory payment ledger fallback for live transactions
 const inMemoryPayments: any[] = [
@@ -172,6 +173,21 @@ export async function POST(req: NextRequest) {
     }
 
     inMemoryPayments.unshift(newPayment);
+
+    // Emit Real-Time SSE Dispatch Event
+    try {
+      dispatchBus.emit("dispatch", {
+        id: `evt_${Date.now()}`,
+        type: "PAYMENT_SETTLED",
+        title: "💳 Payment Authorized",
+        description: `₹${newPayment.amount.toLocaleString("en-IN")} settled via ${newPayment.method} for #${newPayment.bookingNumber}.`,
+        guestName: newPayment.guestName,
+        amount: newPayment.amount,
+        timestamp: new Date().toISOString(),
+      });
+    } catch (err) {
+      console.warn("Dispatch bus emit error:", err);
+    }
 
     return new Response(
       JSON.stringify({

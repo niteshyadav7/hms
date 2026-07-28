@@ -4,6 +4,7 @@ import { BookingService } from "@/services/booking.service";
 import { getAuthUser } from "@/lib/auth/guard";
 import { apiSuccess, apiError } from "@/lib/api-response";
 import { AppError } from "@/lib/errors";
+import { dispatchBus } from "@/lib/events/dispatch-bus";
 
 export async function GET(req: NextRequest) {
   try {
@@ -34,6 +35,22 @@ export async function POST(req: NextRequest) {
     const validatedData = CreateBookingSchema.parse(body);
 
     const booking = await BookingService.createBooking(validatedData, authUser?.userId);
+
+    // Emit Real-Time SSE Dispatch Event
+    try {
+      dispatchBus.emit("dispatch", {
+        id: `evt_${Date.now()}`,
+        type: "BOOKING_CREATED",
+        title: "🎉 New Guest Reservation",
+        description: `Booking #${booking.bookingNumber} confirmed for ${booking.guestName}.`,
+        guestName: booking.guestName,
+        amount: booking.totalPrice,
+        timestamp: new Date().toISOString(),
+      });
+    } catch (err) {
+      console.warn("Dispatch bus emit error:", err);
+    }
+
     return apiSuccess(booking, "Booking created successfully", 201);
   } catch (error: any) {
     if (error.name === "ZodError") {
