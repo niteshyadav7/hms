@@ -13,14 +13,23 @@
   --border-radius-md: 0.75rem;
 }
 
+* {
+  font-family: "Cormorant Garamond", serif !important;
+}
+
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Manrope", "Segoe UI", sans-serif;
+  font-family: "Cormorant Garamond", serif !important;
   background-color: var(--surface);
   color: var(--on-surface);
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   scroll-behavior: smooth;
+}
+
+/* Material Symbols Outlined Icon Overrides to keep icons intact */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
