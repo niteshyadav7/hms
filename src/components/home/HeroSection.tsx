@@ -7,19 +7,19 @@ import { getTodayDateString } from "@/lib/utils/dates";
 
 const HERO_SLIDES = [
   {
+    url: "/images/ethereal_sanctuary_villa.png",
+    title: "Ethereal Sanctuary Villa",
+  },
+  {
+    url: "/images/ethereal_epicure_dining.png",
+    title: "Epicurean Fine Dining",
+  },
+  {
+    url: "/images/ethereal_spa_sanctuary.png",
+    title: "Celestial Hydrotherapy Spa",
+  },
+  {
     url: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=2000&q=85",
-    title: "Overwater Sanctuary",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2000&q=85",
-    title: "Twilight Infinity Vista",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=2000&q=85",
-    title: "Golden Oceanfront Oasis",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=2000&q=85",
     title: "Panoramic Glass Villa",
   },
 ];

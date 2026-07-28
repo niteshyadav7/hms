@@ -8,32 +8,29 @@ import { ResidencesCard } from "../molecules/ResidencesCard";
 export const FeaturedCollection: React.FC = () => {
   const residences = [
     {
-      title: "Azure Ocean Residence",
+      title: "Ethereal Sanctuary Residence",
       price: "From ₹1,200/night",
-      imageUrl:
-        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=85",
+      imageUrl: "/images/ethereal_sanctuary_villa.png",
       specs: [
         { icon: "square_foot", text: "850 sq ft" },
         { icon: "king_bed", text: "King Suite" },
       ],
     },
     {
-      title: "The Lumina Penthouse",
+      title: "Epicurean Penthouse Suite",
       price: "From ₹2,450/night",
-      imageUrl:
-        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1600&q=85",
+      imageUrl: "/images/ethereal_epicure_dining.png",
       specs: [
         { icon: "pool", text: "Private Pool" },
         { icon: "square_foot", text: "2,100 sq ft" },
       ],
     },
     {
-      title: "Garden Sanctuary Suite",
+      title: "Celestial Spa Sanctuary",
       price: "From ₹890/night",
-      imageUrl:
-        "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=85",
+      imageUrl: "/images/ethereal_spa_sanctuary.png",
       specs: [
-        { icon: "garden", text: "Garden View" },
+        { icon: "garden", text: "Hydrotherapy" },
         { icon: "bathtub", text: "Spa Bath" },
       ],
     },
