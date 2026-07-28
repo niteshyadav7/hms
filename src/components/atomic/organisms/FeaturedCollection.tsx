@@ -40,11 +40,14 @@ export const FeaturedCollection: React.FC = () => {
     <section style={{ padding: "4rem 1.5rem", maxWidth: "1280px", margin: "0 auto" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "2.5rem" }}>
         <div>
-          <span style={{ color: "var(--color-brand-primary)", fontSize: "0.85rem", fontWeight: "700", textTransform: "uppercase", letterSpacing: "0.15em" }}>
+          <span className="text-xs font-black uppercase tracking-widest text-[#755b00]">
             The Collection
           </span>
-          <h2 style={{ fontSize: "2rem", fontWeight: "700", color: "#1d1b20", marginTop: "0.3rem" }}>
-            Featured Sanctuaries
+          <h2 className="text-3xl font-black text-[#1b1c1c] mt-1">
+            Featured{" "}
+            <span className="bg-gradient-to-r from-[#755b00] via-[#c9a227] to-[#48645d] bg-clip-text text-transparent">
+              Sanctuaries
+            </span>
           </h2>
         </div>
         <Link

@@ -41,12 +41,17 @@ export default function FeaturedSection() {
     <section className="py-16 px-4 md:px-12 max-w-[1280px] mx-auto w-full">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
         <div className="space-y-2">
-          <span className="text-[#4f378a] text-xs font-semibold tracking-widest uppercase block">
+          <span className="text-[#755b00] text-xs font-black tracking-widest uppercase block">
             THE COLLECTION
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1d1b20]">Featured Sanctuaries</h2>
+          <h2 className="text-3xl md:text-5xl font-black text-[#1b1c1c]">
+            Featured{" "}
+            <span className="bg-gradient-to-r from-[#755b00] via-[#c9a227] to-[#48645d] bg-clip-text text-transparent">
+              Sanctuaries
+            </span>
+          </h2>
         </div>
-        <Link href="/rooms" className="text-[#4f378a] font-medium text-sm flex items-center gap-2 hover:underline">
+        <Link href="/rooms" className="text-[#755b00] font-extrabold text-sm flex items-center gap-2 hover:underline">
           View all residences <span className="material-symbols-outlined">arrow_forward</span>
         </Link>
       </div>

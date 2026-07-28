@@ -120,38 +120,41 @@ export function GuestReviewsSection() {
         {/* Section Title & Rating Hero Banner */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 border-b border-[#cbc4d2]/30 pb-10">
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 bg-[#e9ddff] dark:bg-[#4f378a]/50 text-[#4f378a] dark:text-amber-300 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border border-[#4f378a]/20">
-              <span className="material-symbols-outlined text-sm text-amber-500 animate-spin">
+            <div className="inline-flex items-center gap-2 bg-[#ffe08e]/30 dark:bg-[#755b00]/30 text-[#755b00] dark:text-[#ffe08e] px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border border-[#c9a227]/40">
+              <span className="material-symbols-outlined text-sm text-[#755b00] animate-spin">
                 stars
               </span>
               <span>Verified Guest Stories & Hospitality</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-[#1d1b20] dark:text-white leading-tight">
-              Testimonials from <span className="text-[#4f378a] dark:text-amber-300">Paradise</span>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-[#1b1c1c] dark:text-white leading-tight">
+              Testimonials from{" "}
+              <span className="bg-gradient-to-r from-[#755b00] via-[#c9a227] to-[#48645d] bg-clip-text text-transparent">
+                Paradise
+              </span>
             </h2>
-            <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 max-w-2xl font-medium leading-relaxed">
+            <p className="text-sm md:text-base text-[#4d4635] dark:text-gray-300 max-w-2xl font-medium leading-relaxed">
               Discover authentic reviews from travelers who experienced Lumina Grand&apos;s overwater sanctuaries, Michelin culinary dining, and 24/7 AI-enhanced butler concierge.
             </p>
           </div>
 
           {/* Luxury Rating Stat Badge */}
-          <div className="glass-panel p-6 rounded-3xl border border-white/80 dark:border-white/10 shadow-2xl bg-white/80 dark:bg-[#232029]/80 backdrop-blur-xl flex items-center gap-6 flex-shrink-0">
+          <div className="glass-panel p-6 rounded-3xl border border-[#d1c5af]/60 dark:border-white/10 shadow-2xl bg-white/90 dark:bg-[#232029]/80 backdrop-blur-xl flex items-center gap-6 flex-shrink-0">
             <div className="text-center border-r border-[#cbc4d2]/40 pr-6">
-              <div className="text-5xl font-black text-[#4f378a] dark:text-amber-300 leading-none tracking-tighter">
+              <div className="text-5xl font-black bg-gradient-to-r from-[#755b00] to-[#48645d] bg-clip-text text-transparent leading-none tracking-tighter">
                 {avgRating}
               </div>
-              <span className="text-[10px] font-extrabold text-gray-500 uppercase tracking-widest block mt-1.5">
+              <span className="text-[10px] font-extrabold text-[#7f7663] uppercase tracking-widest block mt-1.5">
                 Out of 5.0 Rating
               </span>
             </div>
             <div className="space-y-1">
-              <div className="flex text-amber-400 text-xl gap-1">
+              <div className="flex text-[#c9a227] text-xl gap-1">
                 {"★".repeat(Math.round(avgRating))}
               </div>
-              <span className="text-xs font-black text-[#1d1b20] dark:text-white block">
+              <span className="text-xs font-black text-[#1b1c1c] dark:text-white block">
                 {totalReviews}+ Verified Guest Stays
               </span>
-              <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-extrabold flex items-center gap-1">
+              <span className="text-[11px] text-[#48645d] dark:text-emerald-400 font-extrabold flex items-center gap-1">
                 <span className="material-symbols-outlined text-xs">verified</span> 100% Authenticated Reviews
               </span>
             </div>
@@ -163,28 +166,31 @@ export function GuestReviewsSection() {
           <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={() => setActiveCategory("ALL")}
-              className={`px-5 py-2 rounded-full text-xs font-extrabold transition-all cursor-pointer border-none shadow-xs ${activeCategory === "ALL"
-                  ? "bg-[#4f378a] text-white shadow-md scale-105"
-                  : "bg-white dark:bg-[#232029] text-gray-600 dark:text-gray-300 hover:bg-[#e9ddff]/50"
-                }`}
+              className={`px-4 py-2 rounded-full text-xs font-extrabold transition-all cursor-pointer ${
+                activeCategory === "ALL"
+                  ? "bg-gradient-to-r from-[#755b00] to-[#48645d] text-white shadow-md border-none"
+                  : "bg-white/80 dark:bg-[#232029] text-[#4d4635] hover:bg-[#f6f3f2] border border-[#d1c5af]/40"
+              }`}
             >
               All Reviews ({reviews.length})
             </button>
             <button
-              onClick={() => setActiveCategory("5STARS")}
-              className={`px-5 py-2 rounded-full text-xs font-extrabold transition-all cursor-pointer border-none shadow-xs ${activeCategory === "5STARS"
-                  ? "bg-[#4f378a] text-white shadow-md scale-105"
-                  : "bg-white dark:bg-[#232029] text-gray-600 dark:text-gray-300 hover:bg-[#e9ddff]/50"
-                }`}
+              onClick={() => setActiveCategory("5STAR")}
+              className={`px-4 py-2 rounded-full text-xs font-extrabold transition-all cursor-pointer ${
+                activeCategory === "5STAR"
+                  ? "bg-gradient-to-r from-[#755b00] to-[#48645d] text-white shadow-md border-none"
+                  : "bg-white/80 dark:bg-[#232029] text-[#4d4635] hover:bg-[#f6f3f2] border border-[#d1c5af]/40"
+              }`}
             >
               5 ★ Exceptional Only
             </button>
             <button
-              onClick={() => setActiveCategory("VILLA")}
-              className={`px-5 py-2 rounded-full text-xs font-extrabold transition-all cursor-pointer border-none shadow-xs ${activeCategory === "VILLA"
-                  ? "bg-[#4f378a] text-white shadow-md scale-105"
-                  : "bg-white dark:bg-[#232029] text-gray-600 dark:text-gray-300 hover:bg-[#e9ddff]/50"
-                }`}
+              onClick={() => setActiveCategory("SANCTUARY")}
+              className={`px-4 py-2 rounded-full text-xs font-extrabold transition-all cursor-pointer ${
+                activeCategory === "SANCTUARY"
+                  ? "bg-gradient-to-r from-[#755b00] to-[#48645d] text-white shadow-md border-none"
+                  : "bg-white/80 dark:bg-[#232029] text-[#4d4635] hover:bg-[#f6f3f2] border border-[#d1c5af]/40"
+              }`}
             >
               Overwater Sanctuary Stays
             </button>

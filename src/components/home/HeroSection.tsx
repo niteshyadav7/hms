@@ -112,7 +112,9 @@ export default function HeroSection() {
       <div className="relative z-30 text-center max-w-4xl mx-auto space-y-6 w-full -mt-64">
         <h1 className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)] leading-tight tracking-tight">
           Ethereal Luxury, <br />
-          Defined by Nature.
+          <span className="bg-gradient-to-r from-[#ffe08e] via-[#c9a227] to-[#cae9e0] bg-clip-text text-transparent">
+            Defined by Nature.
+          </span>
         </h1>
         <p className="text-white text-base md:text-lg max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-[0_2px_16px_rgba(0,0,0,0.95)]">
           Experience the pinnacle of bespoke travel in our sanctuary of light and glass, nestled where the sky meets the sea.

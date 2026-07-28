@@ -8,8 +8,13 @@ export default function BentoGridSection() {
       <div className="px-4 md:px-12 max-w-[1280px] mx-auto w-full">
         {/* Header */}
         <div className="text-center mb-16 max-w-2xl mx-auto space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1d1b20]">Curated Experiences & Amenities</h2>
-          <p className="text-[#494551] text-base leading-relaxed">
+          <h2 className="text-3xl md:text-5xl font-black text-[#1b1c1c]">
+            Curated Experiences &{" "}
+            <span className="bg-gradient-to-r from-[#755b00] via-[#c9a227] to-[#48645d] bg-clip-text text-transparent">
+              Amenities
+            </span>
+          </h2>
+          <p className="text-[#4d4635] text-base leading-relaxed">
             Beyond accommodation, we offer a world of refined leisure, gourmet dining, and sensory delight designed to rejuvenate the soul.
           </p>
         </div>

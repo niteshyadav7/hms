@@ -106,7 +106,7 @@ export function Navbar() {
               alt="Lumina Grand Logo"
               className="w-9 h-9 object-cover rounded-full shadow-md transition-transform duration-300 group-hover:scale-105"
             />
-            <span className="font-extrabold text-lg tracking-tight text-[#4f378a] dark:text-[#e9ddff] leading-none">
+            <span className="font-extrabold text-lg tracking-tight bg-gradient-to-r from-[#755b00] to-[#48645d] bg-clip-text text-transparent leading-none">
               Lumina Grand
             </span>
           </Link>
@@ -115,29 +115,28 @@ export function Navbar() {
           <div className="hidden lg:flex items-center gap-6">
             <Link
               href="/rooms"
-              className={`text-xs font-semibold py-1 no-underline transition-all duration-200 border-b-2 ${
+              className={`text-xs font-bold py-1 no-underline transition-all duration-200 border-b-2 ${
                 isRoomsActive
-                  ? "text-[#4f378a] border-[#4f378a]"
-                  : "text-[#494551] border-transparent hover:text-[#4f378a]"
+                  ? "text-[#755b00] border-[#755b00]"
+                  : "text-[#4d4635] border-transparent hover:text-[#755b00]"
               }`}
             >
               Rooms & Suites
             </Link>
 
-            <a
-              href="/"
+            <button
               onClick={(e) => handleScrollToSection(e, "amenities")}
-              className="text-xs font-semibold py-1 no-underline transition-all duration-200 border-b-2 text-[#494551] border-transparent hover:text-[#4f378a] cursor-pointer"
+              className="text-xs font-bold text-[#4d4635] hover:text-[#755b00] transition-colors border-none bg-transparent cursor-pointer"
             >
               Amenities
-            </a>
+            </button>
 
-            <Link
-              href="/events"
-              className="text-xs font-semibold py-1 no-underline transition-all duration-200 border-b-2 text-[#494551] border-transparent hover:text-[#4f378a]"
+            <button
+              onClick={(e) => handleScrollToSection(e, "weddings")}
+              className="text-xs font-bold text-[#4d4635] hover:text-[#755b00] transition-colors border-none bg-transparent cursor-pointer"
             >
               Weddings & Events
-            </Link>
+            </button>
           </div>
 
           {/* Right Action Controls: AI Mode -> Notifications -> Rightmost User Profile Dropdown */}
@@ -145,10 +144,10 @@ export function Navbar() {
             {/* AI Mode Trigger Button */}
             <button
               onClick={() => setShowAiMode(true)}
-              className="bg-[#e9ddff] hover:bg-[#d5c2fc] text-[#4f378a] px-3.5 py-2 rounded-xl text-xs font-extrabold transition-all cursor-pointer border border-[#4f378a]/20 flex items-center gap-1.5 shadow-sm active:scale-95 whitespace-nowrap"
+              className="bg-gradient-to-r from-[#755b00] to-[#c9a227] hover:from-[#584400] hover:to-[#755b00] text-white px-3.5 py-2 rounded-xl text-xs font-extrabold transition-all cursor-pointer flex items-center gap-1.5 shadow-md active:scale-95 whitespace-nowrap border-none"
               title="Launch Conversational AI Mode"
             >
-              <span className="material-symbols-outlined text-sm text-amber-500">auto_awesome</span>
+              <span className="material-symbols-outlined text-sm text-[#ffe08e]">auto_awesome</span>
               <span>✨ AI Mode</span>
             </button>
 
