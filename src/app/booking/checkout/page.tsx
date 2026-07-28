@@ -495,8 +495,18 @@ function CheckoutFormContent() {
                 className="w-full h-full object-cover"
                 alt="Grand Ocean Suite"
                 src={
-                  room?.roomType?.images ? JSON.parse(room.roomType.images)[0] :
-                  "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=85"
+                  (() => {
+                    if (!room?.roomType?.images) return "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=85";
+                    const imgs = room.roomType.images as any;
+                    if (Array.isArray(imgs)) return imgs[0] || "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=85";
+                    if (typeof imgs === "string") {
+                      if (imgs.startsWith("[")) {
+                        try { return JSON.parse(imgs)[0] || imgs; } catch (e) { return imgs; }
+                      }
+                      return imgs;
+                    }
+                    return "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=85";
+                  })()
                 }
               />
               <div className="absolute top-4 right-4">
